@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Byte</string>
+    <string name="welcome_user">Welcome User!</string>
+    <string name="create_meals">Create Meals</string>
+    <string name="find_meals">Find Meals</string>
+    <string name="saved_meals">Saved Meals</string>
+    <string name="themes">Themes</string>
+    <string name="settings">Settings</string>
+</resources>

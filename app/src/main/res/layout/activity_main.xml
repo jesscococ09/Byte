@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/byteLabelTextView"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="@string/welcome_user"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/byteCreateMealsButton"
+        android:layout_width="300dp"
+        android:layout_height="120dp"
+        android:padding="2dp"
+        android:text="@string/create_meals"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/byteLabelTextView" />
+
+    <Button
+        android:id="@+id/byteFindMealsButton"
+        android:layout_width="300dp"
+        android:layout_height="120dp"
+        android:padding="2dp"
+        android:text="@string/find_meals"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/byteCreateMealsButton"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+    <Button
+        android:id="@+id/byteSavedMealsButton"
+        android:layout_width="300dp"
+        android:layout_height="120dp"
+        android:padding="2dp"
+        android:text="@string/saved_meals"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/byteFindMealsButton"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+    <Button
+        android:id="@+id/byteThemesButton"
+        android:layout_width="300dp"
+        android:layout_height="120dp"
+        android:padding="2dp"
+        android:text="@string/themes"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/byteSavedMealsButton"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <ImageButton
+        android:id="@+id/byteSettingsButton"
+        style="@android:style/Widget.DeviceDefault.ImageButton"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
+        android:backgroundTint="@android:color/widget_edittext_dark"
+        android:contentDescription="@string/settings"
+        android:padding="2dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_setting_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/byteThemesButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
