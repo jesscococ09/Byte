@@ -60,13 +60,21 @@ public abstract class ByteDatabase extends RoomDatabase {
         public void onCreate(@NonNull SupportSQLiteDatabase db){
             super.onCreate(db);
             Log.i(MainActivity.TAG,"DATABASE CREATED!");
-
+            databaseWriteExecutor.execute(()->{
+                UserDAO dao= INSTANCE.userDAO();
+                dao.deleteALL();
+                User admin=new User("admin1","admin1");
+                admin.setAdmin(true);
+                dao.insert(admin);
+                User testUser1=new User("testuser1","testuser1");
+                dao.insert(testUser1);
+            });
         }
     };
 
     public abstract UserDAO userDAO();
-    public abstract MealDAO mealDAO();
-    public abstract SettingDAO settingDAO();
-    public abstract ThemeDAO themeDAO();
+    //public abstract MealDAO mealDAO();
+    //public abstract SettingDAO settingDAO();
+    //public abstract ThemeDAO themeDAO();
 
 }

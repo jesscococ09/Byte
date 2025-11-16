@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import com.example.abyte.database.entities.User;
 import com.example.abyte.databinding.ActivityMainBinding;
-import com.example.abyte.repository.UserRepository;
+import com.example.abyte.database.repositories.UserRepository;
 
 public class MainActivity extends AppCompatActivity {
     private static final String MAIN_ACTIVITY_USER_ID="com.example.abyte.MAIN_ACTIVITY_USER_ID";

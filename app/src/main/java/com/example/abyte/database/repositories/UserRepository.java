@@ -1,4 +1,4 @@
-package com.example.abyte.repository;
+package com.example.abyte.database.repositories;
 
 import android.app.Application;
 import android.util.Log;

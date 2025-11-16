@@ -6,17 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.LiveData;
 
 import com.example.abyte.database.entities.User;
 import com.example.abyte.databinding.ActivityLoginBinding;
-import com.example.abyte.databinding.ActivityMainBinding;
-import com.example.abyte.repository.UserRepository;
+import com.example.abyte.database.repositories.UserRepository;
 
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
@@ -55,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
             if(user!=null){
                 String password=binding.passwordLoginEditText.getText().toString();
                 if(password.equals(user.getPassword())){
-                    startActivity(MainActivity.mainActivityIntentFactory(getApplication(),user.getId()));
+                    startActivity(MainActivity.mainActivityIntentFactory(getApplication(),user.getUserId()));
                 }else{
                     toastMaker("Invalid password");
                     binding.passwordLoginEditText.setSelection(0);
