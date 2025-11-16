@@ -2,9 +2,11 @@ package com.example.abyte.database.entities;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.example.abyte.database.ByteDatabase;
+
 import java.util.Objects;
 
-//@Entity: Use name Variable
+@Entity(tableName = ByteDatabase.USER_TABLE)
 public class User {
     @PrimaryKey(autoGenerate = true)
     private int userId;

@@ -1,34 +1,49 @@
 package com.example.abyte;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
-import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
+import androidx.lifecycle.LiveData;
+import com.example.abyte.database.entities.User;
 import com.example.abyte.databinding.ActivityMainBinding;
+import com.example.abyte.repository.UserRepository;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String MAIN_ACTIVITY_USER_ID="com.example.abyte.MAIN_ACTIVITY_USER_ID";
+    static final String SAVED_INSTANCE_STATE_USERID_KEY="com.example.abyte.SAVED_INSTANCE_STATE_USERID_KEY";
+    private static final int LOGGED_OUT=-1;
     private ActivityMainBinding binding;
+    private UserRepository repository;
+    public static final String TAG="DAC_BYTE";
+    private int loggedinuserid=-1;
+    private User user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivityMainBinding.inflate(getLayoutInflater());
-        //EdgeToEdge.enable(this);
         setContentView(binding.getRoot());
-        /*
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        repository=UserRepository.getRepository(getApplication());
+        loginUser(savedInstanceState);
 
-         */
+        if(loggedinuserid==-1){
+            Intent intent=LoginActivity.loginIntentFactory(getApplication());
+            startActivity(intent);
+            finish();
+        }
+        updateSharedPreference();
+
         binding.byteCreateMealsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,4 +80,99 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    private void loginUser(Bundle savedInstanceState){
+        SharedPreferences sharedPreferences= getSharedPreferences(getString(R.string.preference_file_key),
+                Context.MODE_PRIVATE);
+        loggedinuserid= sharedPreferences.getInt(getString(R.string.preference_userId_key),LOGGED_OUT);
+        if(loggedinuserid==LOGGED_OUT & savedInstanceState!=null && savedInstanceState.containsKey(SAVED_INSTANCE_STATE_USERID_KEY)){
+            loggedinuserid= savedInstanceState.getInt(SAVED_INSTANCE_STATE_USERID_KEY,LOGGED_OUT);
+        }
+        if(loggedinuserid==LOGGED_OUT){
+            loggedinuserid=getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID,LOGGED_OUT);
+        }
+        if(loggedinuserid==LOGGED_OUT){
+            return;
+        }
+        LiveData<User> userObserver=repository.getUserByUserId(loggedinuserid);
+        userObserver.observe(this,user -> {
+            this.user=user;
+            if(user!=null){
+                invalidateOptionsMenu();
+            }
+        });
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState){
+        super.onSaveInstanceState(outState);
+        outState.putInt(SAVED_INSTANCE_STATE_USERID_KEY,loggedinuserid);
+        updateSharedPreference();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.logout_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem item= menu.findItem(R.id.logoutMenuItem);
+        item.setVisible(true);
+        if(user==null){
+            return false;
+        }
+        item.setTitle(user.getUsername());
+        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(@NonNull MenuItem item) {
+                showLogoutDialog();
+                return false;
+            }
+        });
+        return true;
+    }
+
+    private void showLogoutDialog(){
+        AlertDialog.Builder alertBuilder= new AlertDialog.Builder(MainActivity.this);
+        final AlertDialog alertDialog= alertBuilder.create();
+        alertBuilder.setMessage("Logout?");
+        alertBuilder.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                logout();
+            }
+        });
+        alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                alertDialog.dismiss();
+            }
+        });
+        alertBuilder.create().show();
+    }
+
+    private void logout() {
+        loggedinuserid=LOGGED_OUT;
+        updateSharedPreference();
+        getIntent().putExtra(MAIN_ACTIVITY_USER_ID,loggedinuserid);
+        startActivity(LoginActivity.loginIntentFactory(getApplicationContext()));
+    }
+
+    private void updateSharedPreference(){
+        SharedPreferences sharedPreferences=getApplicationContext().getSharedPreferences(
+                getString(R.string.preference_file_key)
+                ,Context.MODE_PRIVATE);
+        SharedPreferences.Editor sharedPrefEditor=sharedPreferences.edit();
+        sharedPrefEditor.putInt(getString(R.string.preference_userId_key),loggedinuserid);
+        sharedPrefEditor.apply();
+    }
+
+    static Intent mainActivityIntentFactory(Context context, int userID){
+        Intent intent= new Intent(context, MainActivity.class);
+        intent.putExtra(MAIN_ACTIVITY_USER_ID,userID);
+        return intent;
+    }
+
 }
