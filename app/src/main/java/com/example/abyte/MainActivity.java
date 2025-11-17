@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -98,6 +99,12 @@ public class MainActivity extends AppCompatActivity {
             this.user=user;
             if(user!=null){
                 invalidateOptionsMenu();
+                ImageButton adminButton=findViewById(R.id.isadminImageButton);
+                if(user.isAdmin()){
+                    adminButton.setVisibility(View.VISIBLE);
+                }else{
+                    adminButton.setVisibility(View.INVISIBLE);
+                }
             }
         });
     }
