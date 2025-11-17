@@ -80,6 +80,12 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"setting button",Toast.LENGTH_SHORT).show();
             }
         });
+        binding.isadminImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"Admin button is working",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
     private void loginUser(Bundle savedInstanceState){
         SharedPreferences sharedPreferences= getSharedPreferences(getString(R.string.preference_file_key),
