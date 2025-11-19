@@ -29,7 +29,7 @@ import java.util.concurrent.Executors;
 //add Meal.class, Setting.class, Theme.class
 public abstract class ByteDatabase extends RoomDatabase {
     private static final String DATABASE_NAME="Bytedatabase";
-    //public static final String MEAL_TABLE="mealtable";
+    public static final String MEAL_TABLE="mealtable";
     //public static final String SETTING_TABLE="settingtable";
     public static final String USER_TABLE="usertable";
     //public static final String THEME_TABLE="themetable";
