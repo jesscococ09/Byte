@@ -12,11 +12,13 @@ public class User {
     private int userId;
     private String username;
     private String password;
+    private String securityKey;
     private boolean isAdmin;
 
-    public User(String username, String password) {
+    public User(String username, String password,String securityKey) {
         this.username = username;
         this.password = password;
+        this.securityKey= securityKey;
         isAdmin=false;
     }
 
@@ -62,6 +64,14 @@ public class User {
 
     public void setAdmin(boolean admin) {
         isAdmin = admin;
+    }
+
+    public String getSecurityKey() {
+        return securityKey;
+    }
+
+    public void setSecurityKey(String securityKey) {
+        this.securityKey = securityKey;
     }
 }
 
