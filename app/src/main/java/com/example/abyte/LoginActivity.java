@@ -15,6 +15,7 @@ import com.example.abyte.database.entities.User;
 import com.example.abyte.databinding.ActivityLoginBinding;
 import com.example.abyte.database.repositories.UserRepository;
 import com.example.abyte.fragments.ForgotPasswordFragment;
+import com.example.abyte.fragments.NewUserFragment;
 
 import java.util.Locale;
 
@@ -42,14 +43,20 @@ public class LoginActivity extends AppCompatActivity {
         binding.forgotPasswordTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                binding.titleLoginTextView.setVisibility(View.GONE);
-                binding.userNameLoginEditText.setVisibility(View.GONE);
-                binding.passwordLoginEditText.setVisibility(View.GONE);
-                binding.loginButton.setVisibility(View.GONE);
-                binding.forgotPasswordTextView.setVisibility(View.GONE);
+                hideLoginUI();
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragmentFrameLayout, new ForgotPasswordFragment())
+                        .addToBackStack(null).commit();
+            }
+        });
+        binding.signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hideLoginUI();
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentFrameLayout,new NewUserFragment())
                         .addToBackStack(null).commit();
             }
         });
@@ -61,7 +68,16 @@ public class LoginActivity extends AppCompatActivity {
             binding.passwordLoginEditText.setVisibility(loginVisibility);
             binding.loginButton.setVisibility(loginVisibility);
             binding.forgotPasswordTextView.setVisibility(loginVisibility);
+            binding.signUpButton.setVisibility(loginVisibility);
         });
+    }
+    private void hideLoginUI(){
+        binding.titleLoginTextView.setVisibility(View.GONE);
+        binding.userNameLoginEditText.setVisibility(View.GONE);
+        binding.passwordLoginEditText.setVisibility(View.GONE);
+        binding.loginButton.setVisibility(View.GONE);
+        binding.forgotPasswordTextView.setVisibility(View.GONE);
+        binding.signUpButton.setVisibility(View.GONE);
     }
     private void verifyUser(){
         if(loginAttempts>=MAX_ATTEMPTS){
@@ -113,6 +129,7 @@ public class LoginActivity extends AppCompatActivity {
         }
                 .start();
     }
+
     private void toastMaker(String message) {
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
