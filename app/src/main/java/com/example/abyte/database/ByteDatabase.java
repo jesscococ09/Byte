@@ -25,7 +25,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @TypeConverters(LocalDateTypeConverter.class)
-@Database(entities = {User.class}, version = 1,exportSchema = false)
+@Database(entities = {User.class}, version = 2,exportSchema = false)
 //add Meal.class, Setting.class, Theme.class
 public abstract class ByteDatabase extends RoomDatabase {
     private static final String DATABASE_NAME="Bytedatabase";
@@ -63,10 +63,10 @@ public abstract class ByteDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(()->{
                 UserDAO dao= INSTANCE.userDAO();
                 dao.deleteALL();
-                User admin=new User("admin1","admin1");
+                User admin=new User("admin1","admin1","admin");
                 admin.setAdmin(true);
                 dao.insert(admin);
-                User testUser1=new User("testuser1","testuser1");
+                User testUser1=new User("testuser1","testuser1","testing");
                 dao.insert(testUser1);
             });
         }
