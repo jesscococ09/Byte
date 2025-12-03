@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
+
 import com.example.abyte.database.entities.User;
 import com.example.abyte.databinding.ActivityMainBinding;
 import com.example.abyte.database.repositories.UserRepository;
@@ -73,11 +74,12 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"fourth button",Toast.LENGTH_SHORT).show();
             }
         });
-        binding.byteSettingsButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton settingsButton = findViewById(R.id.byteSettingsButton);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //bing to setting.xlm
-                Toast.makeText(MainActivity.this,"setting button",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
             }
         });
         binding.isadminImageButton.setOnClickListener(new View.OnClickListener() {
@@ -187,5 +189,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(MAIN_ACTIVITY_USER_ID,userID);
         return intent;
     }
+
+
 
 }
