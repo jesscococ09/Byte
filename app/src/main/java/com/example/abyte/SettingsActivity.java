@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class SettingsActivity extends AppCompatActivity {
+    String user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
