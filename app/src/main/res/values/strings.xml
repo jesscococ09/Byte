@@ -24,4 +24,8 @@
     <string name="sign_up">Sign Up!</string>
     <string name="please_sign_up">Please Sign Up!</string>
     <string name="please_enter_a_recovery_word">Please enter a recovery word:</string>
+    <string name="admin_settings">Admin - Settings</string>
+    <string name="allow_new_user_registration">Allow New User Registration</string>
+    <string name="maintenance_mode">Maintenance Mode</string>
+    <string name="save_settings">Save Settings</string>
 </resources>
