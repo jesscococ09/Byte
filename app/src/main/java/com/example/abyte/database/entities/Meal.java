@@ -1,16 +1,83 @@
 package com.example.abyte.database.entities;
 
+import static androidx.room.ForeignKey.CASCADE;
+
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.ForeignKey;
 
 import com.example.abyte.database.ByteDatabase;
 
-//@Entity(tableName = ByteDatabase.MEAL_TABLE)
+import java.util.List;
+
+@Entity(tableName = ByteDatabase.MEAL_TABLE, foreignKeys = {
+        @ForeignKey(
+                entity = User.class,
+                parentColumns = "userId",
+                childColumns = "creatorId",
+                onDelete = CASCADE,
+                onUpdate = CASCADE
+        )
+})
 public class Meal {
-    /*
+
     @PrimaryKey(autoGenerate = true)
     private int mealId;
-    //Use databaseDesign
+    private String mealName;
+    //TODO: Maybe implement ingredientList as Hashmap, containing the ingredient and the amount
+    private List<Ingredient> ingredientList;
+    //TODO: Maybe change instuctions to be a string that contains a file name(an html file)
+    private String instructionsFile;
 
-     */
+    private int creatorId;
+    private boolean isPremium;
+
+    public int getMealId() {
+        return mealId;
+    }
+
+    public void setMealId(int mealId) {
+        this.mealId = mealId;
+    }
+
+    public List<Ingredient> getIngredientList() {
+        return ingredientList;
+    }
+
+    public void setIngredientList(List<Ingredient> ingredientList) {
+        this.ingredientList = ingredientList;
+    }
+
+    public String getInstructions() {
+        return instructionsFile;
+    }
+
+    public String getMealName() {
+        return mealName;
+    }
+
+    public void setMealName(String mealName) {
+        this.mealName = mealName;
+    }
+
+    public void setInstructions(String instructionsFile) {
+        this.instructionsFile = instructionsFile;
+    }
+
+    public int getCreatorId() {
+        return creatorId;
+    }
+
+    public void setCreatorId(int creatorId) {
+        this.creatorId = creatorId;
+    }
+
+    public boolean isPremium() {
+        return isPremium;
+    }
+
+    public void setPremium(boolean premiumBool) {
+        this.isPremium = premiumBool;
+    }
 }
+
