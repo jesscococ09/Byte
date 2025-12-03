@@ -75,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"fourth button",Toast.LENGTH_SHORT).show();
             }
         });
-        ImageButton settingsButton = findViewById(R.id.byteSettingsButton);
-        settingsButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton settingsButton1 = findViewById(R.id.byteSettingsButton);
+        settingsButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
