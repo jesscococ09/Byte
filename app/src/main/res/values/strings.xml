@@ -28,4 +28,8 @@
     <string name="allow_new_user_registration">Allow New User Registration</string>
     <string name="maintenance_mode">Maintenance Mode</string>
     <string name="save_settings">Save Settings</string>
+    <string name="use_system_default_theme">Use System Default Theme</string>
+    <string name="switch_to_dark_theme">Switch to Dark Theme</string>
+    <string name="switch_to_light_theme">Switch to Light Theme</string>
+    <string name="admin_themes">Admin - Themes</string>
 </resources>
