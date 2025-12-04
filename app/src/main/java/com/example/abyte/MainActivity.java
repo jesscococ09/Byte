@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         binding.isadminImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Admin button is working",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Admin button is working", Toast.LENGTH_SHORT).show();
             }
         });
     }
