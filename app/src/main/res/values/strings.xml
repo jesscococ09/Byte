@@ -36,4 +36,11 @@
     <string name="view_bugs">View Bugs</string>
     <string name="add_bug">Add Bug</string>
     <string name="delete_bug">Delete Bug</string>
+    <string name="Themes">Themes</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="system_theme">System Theme</string>
+    <string name="Back">Back</string>
+    <string name="Settings">Settings</string>
+    <string name="Bugs">Bugs</string>
 </resources>
