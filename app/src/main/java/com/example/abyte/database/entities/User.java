@@ -4,6 +4,9 @@ import androidx.room.PrimaryKey;
 
 import com.example.abyte.database.ByteDatabase;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 @Entity(tableName = ByteDatabase.USER_TABLE)
@@ -14,10 +17,15 @@ public class User {
     private String password;
     private boolean isAdmin;
 
+    //TODO NOT FINAL** Needs testing
+    //Intentionally is not included in hashcode and equals methods
+    private HashMap<String, Ingredient> availableIngredients;
+
     public User(String username, String password) {
         this.username = username;
         this.password = password;
         isAdmin=false;
+        availableIngredients = new HashMap<>();
     }
 
     @Override
@@ -62,6 +70,14 @@ public class User {
 
     public void setAdmin(boolean admin) {
         isAdmin = admin;
+    }
+
+    public HashMap<String, Ingredient> getAvailableIngredients() {
+        return availableIngredients;
+    }
+
+    public void setAvailableIngredients(HashMap<String, Ingredient> newIngrList){
+        availableIngredients = newIngrList;
     }
 }
 

@@ -7,21 +7,28 @@ public class Ingredient {
 //    static final String[] POSSIBLE_INGREDIENTS = {"chicken", "beef", };
     private String name;
 
-    /*
+    /**
     Holds type of measurement ingredient is measured in (Ex: oz, lbs, cups, tbs, etc.)
     Used in tandom to amount to give representation of how much of the ingredient is available/required
      */
     private String weight;
-    /*
+    /**
     Hold the numbered amount of the ingredient
     Used in tandom to weight to give give representation of how much is available/required
      */
     private double amount;
 
-    public Ingredient(String name, String weight, double amount) {
+    /**
+     * Represents if the ingredient can be missed in its recipe, case by case basis
+     * EX: Chicken in most recipes is a main part of the recipe, but you can substitute spices
+     */
+    private boolean isImportant;
+
+    public Ingredient(String name, String weight, double amount, boolean isImportant) {
         this.name = name;
         this.weight = weight;
         this.amount = amount;
+        this.isImportant = isImportant;
     }
 
     /*
@@ -46,7 +53,7 @@ public class Ingredient {
         return result;
     }
 
-    public double isAmount() {
+    public double getAmount() {
         return amount;
     }
 
@@ -68,5 +75,13 @@ public class Ingredient {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isImportant() {
+        return isImportant;
+    }
+
+    public void setImportant(boolean important) {
+        isImportant = important;
     }
 }
