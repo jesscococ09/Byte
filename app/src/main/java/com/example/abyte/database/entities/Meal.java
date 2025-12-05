@@ -21,6 +21,15 @@ import java.util.List;
 })
 public class Meal {
 
+    public Meal(int mealId, String mealName, List<Ingredient> ingredientList, String instructionsFile, int creatorId, boolean isPremium) {
+        this.mealId = mealId;
+        this.mealName = mealName;
+        this.ingredientList = ingredientList;
+        this.instructionsFile = instructionsFile;
+        this.creatorId = creatorId;
+        this.isPremium = isPremium;
+    }
+
     @PrimaryKey(autoGenerate = true)
     private int mealId;
     private String mealName;
