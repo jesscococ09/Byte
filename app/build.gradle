@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
 }
+def mealDbApiKey = project.findProperty("MEALDB_API_KEY") ?: ""
 
 android {
     namespace 'com.example.abyte'
@@ -14,6 +15,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "MEALDB_API_KEY", "\"${mealDbApiKey}\""
     }
 
     buildTypes {
@@ -28,7 +30,9 @@ android {
     }
     buildFeatures {
         viewBinding true
+        buildConfig true
     }
+
 }
 
 dependencies {
