@@ -43,5 +43,4 @@ public interface MealsApi {
     //Lookup a selection of 10 random meals
     @GET("randomselection.php")
     Call<MealResponse> getRandomSelection();
-
 }
