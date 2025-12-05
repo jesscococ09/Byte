@@ -1,11 +1,15 @@
 package com.example.abyte.APIs;
 
+import com.example.abyte.BuildConfig;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+
 public class apiClient {
     private static Retrofit retrofit=null;
-    private static final String URL_EXTERNAL_API= "https://www.themealdb.com/api/json/v1/1/";
+
+    private static final String URL_EXTERNAL_API= "https://www.themealdb.com/api/json/v2/"+ BuildConfig.MEALDB_API_KEY + "/";
     public static Retrofit getExternalClient(){
         if(retrofit==null){
             retrofit= new Retrofit.Builder()
