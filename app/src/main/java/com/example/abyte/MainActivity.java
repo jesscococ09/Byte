@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         outState.putInt(SAVED_INSTANCE_STATE_USERID_KEY,loggedinuserid);
         updateSharedPreference();
     }
-
+//recycler tools
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater=getMenuInflater();
