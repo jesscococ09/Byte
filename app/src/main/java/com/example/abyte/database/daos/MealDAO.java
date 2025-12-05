@@ -8,7 +8,6 @@ import androidx.room.Query;
 
 import com.example.abyte.database.ByteDatabase;
 import com.example.abyte.database.entities.Meal;
-import com.example.abyte.database.entities.User;
 
 import java.util.List;
 
@@ -20,12 +19,18 @@ public interface MealDAO {
     @Query("Select * from " + ByteDatabase.MEAL_TABLE + " ORDER BY mealName")
     LiveData<List<Meal>> getAllMeals();
 
-    @Query("DELETE from " + ByteDatabase.MEAL_TABLE)
-    void deleteAll();
-
     @Query("SELECT * from " + ByteDatabase.MEAL_TABLE + " WHERE mealName == :mealName")
     LiveData<Meal> getMealByName(String mealName);
 
     @Query("SELECT * from " + ByteDatabase.MEAL_TABLE + " WHERE mealId == :mealId")
-    LiveData<User> getMealById(int mealId);
+    LiveData<Meal> getMealById(int mealId);
+
+    @Query("DELETE from " + ByteDatabase.MEAL_TABLE)
+    void deleteAll();
+
+    @Query("DELETE FROM " + ByteDatabase.MEAL_TABLE + " WHERE mealName == :mealName")
+    void deleteMealByName(String mealName);
+
+    @Query("DELETE FROM " + ByteDatabase.MEAL_TABLE + " WHERE mealId == :mealId")
+    void deleteMealById(int mealId);
 }
