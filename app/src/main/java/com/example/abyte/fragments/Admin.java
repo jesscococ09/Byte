@@ -23,19 +23,19 @@ public class Admin extends Fragment {
         view.findViewById(R.id.viewAdminBugsButton).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                //AdminAct_Bugs
+                openFragment(new AdminAct_Bugs());
             }
         });
-        view.findViewById(R.id.viewAdminBugsButton).setOnClickListener(new View.OnClickListener(){
+        view.findViewById(R.id.viewAdminSettingsButton).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                //AdminAct_Settings
+                openFragment(new AdminAct_Settings());
             }
         });
-        view.findViewById(R.id.viewAdminBugsButton).setOnClickListener(new View.OnClickListener(){
+        view.findViewById(R.id.viewAdminThemesButton).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                //AdminAct_Themes
+                openFragment(new AdminAct_Themes());
             }
         });
     }
