@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LiveData;
 import com.example.abyte.database.entities.User;
 import com.example.abyte.databinding.ActivityMainBinding;
@@ -94,10 +95,31 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.fragmentContainer).setVisibility(View.VISIBLE);
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
-                        new com.example.abyte.fragments.Admin()).addToBackStack("Admin").
+                        new com.example.abyte.fragments.Admin()).addToBackStack("AdminHome").
                         commit();
             }
         });
+        getSupportFragmentManager().addOnBackStackChangedListener(
+                new androidx.fragment.app.FragmentManager.OnBackStackChangedListener(){
+                    @Override
+                    public void onBackStackChanged(){
+                        int count = getSupportFragmentManager().getBackStackEntryCount();
+
+                        if(count == 0){
+
+                            binding.byteLabelTextView.setVisibility(View.VISIBLE);
+                            binding.byteCreateMealsButton.setVisibility(View.VISIBLE);
+                            binding.byteFindMealsButton.setVisibility(View.VISIBLE);
+                            binding.byteSavedMealsButton.setVisibility(View.VISIBLE);
+                            binding.byteThemesButton.setVisibility(View.VISIBLE);
+                            binding.byteSettingsButton.setVisibility(View.VISIBLE);
+                            binding.logDisplayRecyclerView.setVisibility(View.VISIBLE);
+
+                            findViewById(R.id.fragmentContainer).setVisibility(View.GONE);
+                        }
+                    }
+                }
+        );
     }
     private void loginUser(Bundle savedInstanceState){
         SharedPreferences sharedPreferences= getSharedPreferences(getString(R.string.preference_file_key),
