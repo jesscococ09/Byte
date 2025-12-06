@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 import com.example.abyte.R;
@@ -24,19 +25,25 @@ public class AdminAct_Themes extends Fragment{
         view.findViewById(R.id.themeLightButton).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 Toast.makeText(getContext(), "Light Theme Selected", Toast.LENGTH_SHORT).show();
+                requireActivity().recreate();
             }
         });
         view.findViewById(R.id.themeDarkButton).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 Toast.makeText(getContext(), "Dark Theme Selected", Toast.LENGTH_SHORT).show();
+                requireActivity().recreate();
             }
         });
         view.findViewById(R.id.themeSystemButton).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
                 Toast.makeText(getContext(), "System Default Selected", Toast.LENGTH_SHORT).show();
+                requireActivity().recreate();
             }
         });
         view.findViewById(R.id.adminBackButton).setOnClickListener(new View.OnClickListener(){
