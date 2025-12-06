@@ -83,7 +83,19 @@ public class MainActivity extends AppCompatActivity {
         binding.isadminImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Admin button is working", Toast.LENGTH_SHORT).show();
+                binding.byteLabelTextView.setVisibility(View.GONE);
+                binding.byteCreateMealsButton.setVisibility(View.GONE);
+                binding.byteFindMealsButton.setVisibility(View.GONE);
+                binding.byteSavedMealsButton.setVisibility(View.GONE);
+                binding.byteThemesButton.setVisibility(View.GONE);
+                binding.byteSettingsButton.setVisibility(View.GONE);
+                binding.logDisplayRecyclerView.setVisibility(View.GONE);
+
+                findViewById(R.id.fragmentContainer).setVisibility(View.VISIBLE);
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
+                        new com.example.abyte.fragments.Admin()).addToBackStack("Admin").
+                        commit();
             }
         });
     }
