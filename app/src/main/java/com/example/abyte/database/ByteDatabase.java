@@ -15,16 +15,20 @@ import com.example.abyte.database.daos.MealDAO;
 import com.example.abyte.database.daos.SettingDAO;
 import com.example.abyte.database.daos.ThemeDAO;
 import com.example.abyte.database.daos.UserDAO;
+import com.example.abyte.database.entities.Ingredient;
 import com.example.abyte.database.entities.Meal;
 import com.example.abyte.database.entities.Setting;
 import com.example.abyte.database.entities.Theme;
 import com.example.abyte.database.entities.User;
+import com.example.abyte.database.typeConverters.ArrayTypeConverter;
+import com.example.abyte.database.typeConverters.HashMapTypeConverter;
+import com.example.abyte.database.typeConverters.IngredientTypeConverter;
 import com.example.abyte.database.typeConverters.LocalDateTypeConverter;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@TypeConverters(LocalDateTypeConverter.class)
+@TypeConverters({LocalDateTypeConverter.class, IngredientTypeConverter.class, HashMapTypeConverter.class, ArrayTypeConverter.class})
 @Database(entities = {User.class, Meal.class}, version = 1,exportSchema = false)
 //add Setting.class, Theme.class
 public abstract class ByteDatabase extends RoomDatabase {
