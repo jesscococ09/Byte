@@ -24,19 +24,19 @@ public class AdminAct_Themes extends Fragment{
         view.findViewById(R.id.themeLightButton).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Toast.makeText(getContext(), "Light Theme selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Light Theme Selected", Toast.LENGTH_SHORT).show();
             }
         });
         view.findViewById(R.id.themeDarkButton).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Toast.makeText(getContext(), "Dark theme selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Dark Theme Selected", Toast.LENGTH_SHORT).show();
             }
         });
         view.findViewById(R.id.themeSystemButton).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Toast.makeText(getContext(), "System Default", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "System Default Selected", Toast.LENGTH_SHORT).show();
             }
         });
         view.findViewById(R.id.adminBackButton).setOnClickListener(new View.OnClickListener(){
