@@ -19,17 +19,17 @@ public class Search {
     /**
      Flag that represents missingness, used {@link #availableMeals} to denote "do-able-ility".
      */
-    private final int NOT_AVAILABILE = 0;
+    public static final int MISSING = 0;
 
     /**
      Flag that represents partial completeness, used {@link #availableMeals} to denote "do-able-ility".
      */
-    private final int PARTIAL = 1;
+    public static final int PARTIAL = 1;
 
     /**
      Flag that represents full completeness, used {@link #availableMeals} to denote "do-able-ility".
      */
-    private final int FULL = 2;
+    public static final int FULL = 2;
 
     /**
      * Holds the list of selected meals to check for "complete-ability", loaded by the constructor
@@ -68,7 +68,7 @@ public class Search {
         availableMeals = new HashMap<>();
         availableMeals.put(FULL, new ArrayList<>());
         availableMeals.put(PARTIAL, new ArrayList<>());
-        availableMeals.put(NOT_AVAILABILE, new ArrayList<>());
+        availableMeals.put(MISSING, new ArrayList<>());
         checkedMeals = new HashMap<>();
     }
 
@@ -101,30 +101,38 @@ public class Search {
      * @return A Hashmap organizing which ingredients are missing
      */
     public HashMap<Integer, List<Ingredient>> compare(Meal meal) {
-        HashMap<Integer, List<Ingredient>> ingredMap = new HashMap<>();
-        ingredMap.put(-1, new ArrayList<Ingredient>());
-        ingredMap.put(0, new ArrayList<Ingredient>());
-        ingredMap.put(1, new ArrayList<Ingredient>());
-        List<Ingredient> ingList = meal.getIngredientList();
+        List<Ingredient> missingIngredientList = new ArrayList<>();
+        List<Ingredient> partialIngredientList = new ArrayList<>();
+        List<Ingredient> fullIngredientList = new ArrayList<>();
+
+        Ingredient[] ingredientArray = meal.getIngredientArray();
 
         //Goes through meal requirements and categorizes ingredients on a scale
-        for (Ingredient i : ingList) {
+        for (Ingredient i : ingredientArray) {
+            boolean isImportant = i.isImportant();
 
-            //If ingredient is not available, mark as missing, otherwise check if theres enough
-            if (availableIngredients.containsKey(i.getName())){
-                double userIngWeight = availableIngredients.get(i.getName()).getAmount();
-                double currIngWeight = i.getAmount();
+            //If ingredient is not in user's collection, mark as missing, otherwise check if theres enough
+            if (!availableIngredients.containsKey(i.getName()) && isImportant) {
+                missingIngredientList.add(i);
+                continue;
+            }
 
-                //If user doesn't have enough of the ingredient, mark it as partial
-                if ((Double.compare(userIngWeight, currIngWeight) < 0)){
-                    ingredMap.get(0).add(i);
-                } else { //If it reached this point, its all good
-                    ingredMap.get(1).add(i);
-                }
-            } else {
-                ingredMap.get(-1).add(i);
+            double userIngWeight = availableIngredients.get(i.getName()).getAmount();
+            double currIngWeight = i.getAmount();
+            int compare = Double.compare(userIngWeight, currIngWeight);
+            if(userIngWeight == 0.0 && isImportant) {
+                missingIngredientList.add(i);
+            } else if (compare < 0){ //If user doesn't have enough of the ingredient, mark it as partial
+                partialIngredientList.add(i);
+            } else { //If it reached this point, its all good
+                fullIngredientList.add(i);
             }
         }
+
+        HashMap<Integer, List<Ingredient>> ingredMap = new HashMap<>();
+        ingredMap.put(Search.MISSING, missingIngredientList);
+        ingredMap.put(Search.PARTIAL, partialIngredientList);
+        ingredMap.put(Search.FULL, fullIngredientList);
         return ingredMap;
     }
 
@@ -134,6 +142,7 @@ public class Search {
      * <br> - If there are any main ingredients partially available and or small aspects missing, mark as partially completable
      * <br> - If all ingredients are present, mark as ready to make
      * @param mealName The name of the meal that has previously been compared and ready for categorizing
+     * @return Returns false if there was an error mid program and meal name was not added to {@link #availableMeals}, otherwise true
      */
     public boolean checkCompleteness(String mealName){
         if(checkedMeals == null){
@@ -150,17 +159,18 @@ public class Search {
         List<Ingredient> currList;
         HashMap<Integer, List<Ingredient>> currMealMap = checkedMeals.get(mealName);
 
-        if (!currMealMap.containsKey(NOT_AVAILABILE)) {
+        if (!currMealMap.containsKey(MISSING)) {
             System.out.println("ERROR AT CHECK COMPLETENESS: There is no entry for NOT_AVAILABLE");
+            return false;
         }
-        currList = currMealMap.get(NOT_AVAILABILE);
+        currList = currMealMap.get(MISSING);
         assert currList != null;
         if (!currList.isEmpty()) {
             //Iterates all through the missing ingredients, if a main ingredient is missing, flag recipe as not completable
             for (Ingredient cm : currList) {
                 if (cm.isImportant()){
                     //TODO: Possibly remove excessive code here
-                    availableMeals.get(NOT_AVAILABILE).add(mealName);
+                    availableMeals.get(MISSING).add(mealName);
                     return true;
                 }
             }
