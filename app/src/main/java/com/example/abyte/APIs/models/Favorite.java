@@ -1,11 +1,15 @@
 package com.example.abyte.APIs.models;
 
+import com.example.abyte.database.entities.Meal;
+
 public class Favorite {
     private int id;
     private int user_id;
     private int recipe_id;
 
     private Recipe recipe;
+
+    private Meal meal;
 
     public int getId() {
         return id;
@@ -37,5 +41,13 @@ public class Favorite {
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
+    }
+
+    public Meal getMeal() {
+        return meal;
+    }
+
+    public void setMeal(Meal meal) {
+        this.meal = meal;
     }
 }
