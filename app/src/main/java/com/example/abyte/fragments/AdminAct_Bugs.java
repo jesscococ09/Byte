@@ -24,19 +24,19 @@ public class AdminAct_Bugs extends Fragment{
         view.findViewById(R.id.viewBugsButton).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Toast.makeText(getContext(), "Viewing Bugs", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Viewing Bugs...", Toast.LENGTH_SHORT).show();
             }
         });
         view.findViewById(R.id.addBugButton).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Toast.makeText(getContext(), "Add Bug done", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Adding Bug...", Toast.LENGTH_SHORT).show();
             }
         });
         view.findViewById(R.id.deleteBugButton).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Toast.makeText(getContext(), "Delete Bug clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Deleting Bug...", Toast.LENGTH_SHORT).show();
             }
         });
         view.findViewById(R.id.adminBackButton).setOnClickListener(new View.OnClickListener(){

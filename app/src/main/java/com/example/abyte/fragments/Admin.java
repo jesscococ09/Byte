@@ -38,6 +38,13 @@ public class Admin extends Fragment {
                 openFragment(new AdminAct_Themes());
             }
         });
+        view.findViewById(R.id.adminBackButton).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                requireActivity().getSupportFragmentManager().popBackStack();
+            }
+        });
+
     }
 
     private void openFragment(Fragment frag){
