@@ -8,6 +8,7 @@ import androidx.room.ForeignKey;
 
 import com.example.abyte.database.ByteDatabase;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Entity(tableName = ByteDatabase.MEAL_TABLE, foreignKeys = {
@@ -21,10 +22,10 @@ import java.util.List;
 })
 public class Meal {
 
-    public Meal(int mealId, String mealName, List<Ingredient> ingredientList, String instructionsFile, int creatorId, boolean isPremium) {
+    public Meal(int mealId, String mealName, Ingredient[] ingredientArray, String instructionsFile, int creatorId, boolean isPremium) {
         this.mealId = mealId;
         this.mealName = mealName;
-        this.ingredientList = ingredientList;
+        this.ingredientArray = ingredientArray;
         this.instructionsFile = instructionsFile;
         this.creatorId = creatorId;
         this.isPremium = isPremium;
@@ -34,7 +35,7 @@ public class Meal {
     private int mealId;
     private String mealName;
     //TODO: Maybe implement ingredientList as Hashmap, containing the ingredient and the amount
-    private List<Ingredient> ingredientList;
+    private Ingredient[] ingredientArray;
     //TODO: Maybe change instuctions to be a string that contains a file name(an html file)
     private String instructionsFile;
 
@@ -49,15 +50,15 @@ public class Meal {
         this.mealId = mealId;
     }
 
-    public List<Ingredient> getIngredientList() {
-        return ingredientList;
+    public Ingredient[] getIngredientArray() {
+        return ingredientArray;
     }
 
-    public void setIngredientList(List<Ingredient> ingredientList) {
-        this.ingredientList = ingredientList;
+    public void setIngredientArray(Ingredient[] ingredientArray) {
+        this.ingredientArray = ingredientArray;
     }
 
-    public String getInstructions() {
+    public String getInstructionsFile() {
         return instructionsFile;
     }
 
@@ -87,6 +88,18 @@ public class Meal {
 
     public void setPremium(boolean premiumBool) {
         this.isPremium = premiumBool;
+    }
+
+    @Override
+    public String toString() {
+        return "Meal{" +
+                "mealId=" + mealId +
+                ", mealName='" + mealName + '\'' +
+                ", ingredientArray=" + Arrays.toString(ingredientArray) +
+                ", instructionsFile='" + instructionsFile + '\'' +
+                ", creatorId=" + creatorId +
+                ", isPremium=" + isPremium +
+                '}';
     }
 }
 

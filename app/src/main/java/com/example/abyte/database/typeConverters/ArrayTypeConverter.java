@@ -18,7 +18,7 @@ public class ArrayTypeConverter {
     }
 
     @TypeConverter
-    Ingredient[] JsonToCustomArray(String strCustArr) {
+    public Ingredient[] JsonToCustomArray(String strCustArr) {
         return gson.fromJson(strCustArr, Ingredient[].class);
     }
 

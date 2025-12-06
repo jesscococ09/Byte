@@ -27,7 +27,10 @@ public class Ingredient {
     public Ingredient(String name, String weight, double amount, boolean isImportant) {
         this.name = name;
         this.weight = weight;
-        this.amount = amount;
+        if(amount < 0)
+            this.amount = 0;
+        else
+            this.amount = amount;
         this.isImportant = isImportant;
     }
 
@@ -58,7 +61,10 @@ public class Ingredient {
     }
 
     public void setAmount(double amount) {
-        this.amount = amount;
+        if (amount < 0)
+            this.amount = 0;
+        else
+            this.amount = amount;
     }
 
     public String getWeight() {
@@ -83,5 +89,15 @@ public class Ingredient {
 
     public void setImportant(boolean important) {
         isImportant = important;
+    }
+
+    @Override
+    public String toString() {
+        return "Ingredient{" +
+                "name='" + name + '\'' +
+                ", weight='" + weight + '\'' +
+                ", amount=" + amount +
+                ", isImportant=" + isImportant +
+                '}';
     }
 }
