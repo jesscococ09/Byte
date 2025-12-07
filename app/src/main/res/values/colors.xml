@@ -2,4 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="theme_white">#FFFFFF</color>
+    <color name="theme_pink">#FFC0CB</color>
+    <color name="theme_baby_blue">#89CFF0</color>
+    <color name="Lime">#CDDC39</color>
+    <color name="Cyan">#00BCD4</color>
+    <color name="Magenta">#E040FB</color>
+    <color name="ThemeOrange">#FF9800</color>
+
 </resources>

@@ -12,6 +12,19 @@
     <string name="preference_file_key">preference_file_key</string>
     <string name="preference_userId_key">preference_userId_key</string>
     <string name="adminbutton">adminButton</string>
+    <string name="Orange">Orange</string>
+    <string name="White">White</string>
+    <string name="Pink">Pink</string>
+    <string name="Lime">Lime</string>
+    <string name="BabyBlue">Baby Blue</string>
+    <string name="Cyan">Cyan</string>
+    <string name="Magenta">Magenta</string>
+    <string name="Settings">Settings</string>
+    <string name="Theme_off_switch">Theme off switch</string>
+    <string name="Return">Return</string>
+    <string name="Small">Small</string>
+    <string name="Large">Large</string>
+    <string name="Normal">Normal</string>
     <string name="forgot_password"><u>Forgot Password?</u></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
