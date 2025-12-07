@@ -45,8 +45,9 @@ public class MealSearchActivity extends AppCompatActivity {
 
     //TODO: Implement way to retrieve info from database
     private void setUpMealList(){
-        mealList.add(new Meal(0, "Spaghetti w/ Tomato Sauce", "WIP", R.drawable.spaghetti));
-        mealList.add(new Meal(1, "Eat Me...", "WIP", R.drawable.cat));
-        mealList.add(new Meal(2, "Pick it up Quickly", "WIP", R.drawable.spilled));
+        mealList.add(ExampleMeals.spaghettiWithSauce);
+        mealList.add(ExampleMeals.porkchop);
+        mealList.add(ExampleMeals.joke1);
+        mealList.add(ExampleMeals.joke2);
     }
 }

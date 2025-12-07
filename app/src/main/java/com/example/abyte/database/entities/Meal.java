@@ -21,16 +21,6 @@ import java.util.List;
         )
 })
 public class Meal {
-
-    public Meal(int mealId, String mealName, Ingredient[] ingredientArray, String instructionsFile, int creatorId, boolean isPremium) {
-        this.mealId = mealId;
-        this.mealName = mealName;
-        this.ingredientArray = ingredientArray;
-        this.instructionsFile = instructionsFile;
-        this.creatorId = creatorId;
-        this.isPremium = isPremium;
-    }
-
     @PrimaryKey(autoGenerate = true)
     private int mealId;
     private String mealName;
@@ -38,9 +28,22 @@ public class Meal {
     private Ingredient[] ingredientArray;
     //TODO: Maybe change instuctions to be a string that contains a file name(an html file)
     private String instructionsFile;
+    private int imageFile;
 
     private int creatorId;
     private boolean isPremium;
+
+    public Meal(int mealId, String mealName, Ingredient[] ingredientArray, String instructionsFile, int imageFile, int creatorId, boolean isPremium) {
+        this.mealId = mealId;
+        this.mealName = mealName;
+        this.ingredientArray = ingredientArray;
+        this.imageFile = imageFile;
+        this.instructionsFile = instructionsFile;
+        this.creatorId = creatorId;
+        this.isPremium = isPremium;
+    }
+
+
 
     public int getMealId() {
         return mealId;

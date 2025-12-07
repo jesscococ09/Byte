@@ -59,8 +59,7 @@ public class MealFavoritesActivity extends AppCompatActivity {
 
     //TODO: Implement way to retrieve info for favorite meals
     private void setUpMealList(){
-        mealList.add(new Meal(2, "Pick it up Quickly", "WIP", R.drawable.spilled));
-        mealList.add(new Meal(1, "Eat Me...", "WIP", R.drawable.cat));
-
+        mealList.add(ExampleMeals.joke1);
+        mealList.add(ExampleMeals.joke2);
     }
 }
