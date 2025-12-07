@@ -37,4 +37,9 @@
     <string name="add_bug">Add Bug</string>
     <string name="delete_bug">Delete Bug</string>
     <string name="welcome_admin">Welcome, Admin</string>
+    <string name="stats">STATS</string>
+    <string name="total_mealdb_meals_0">Total MealDB Meals: 0</string>
+    <string name="total_bugs_0">Total Bugs: 0</string>
+    <string name="total_meals_0">Total Meals: 0</string>
+    <string name="total_supabase_meals_0">Total Supabase Meals: 0</string>
 </resources>
