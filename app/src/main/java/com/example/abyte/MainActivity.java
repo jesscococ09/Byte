@@ -51,6 +51,7 @@ public class MainActivity extends BaseActivity {
         setTheme(themeResId2);
 
 
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setContentView(R.layout.activity_main);
