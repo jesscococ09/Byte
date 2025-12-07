@@ -17,22 +17,22 @@ import java.util.List;
 
 public class Search {
     /**
-     Flag that represents missingness, used {@link #availableMeals} to denote "do-able-ility".
+     Flag that represents missingness, used in both {@link #catagorizedMeals} and {@link #compare(Meal)} to denote whether a meal/ingredient is do-able/present.
      */
     public static final int MISSING = 0;
 
     /**
-     Flag that represents partial completeness, used {@link #availableMeals} to denote "do-able-ility".
+     Flag that represents partial completeness, used in both {@link #catagorizedMeals} and {@link #compare(Meal)} to denote whether a meal/ingredient is do-able/present.
      */
     public static final int PARTIAL = 1;
 
     /**
-     Flag that represents full completeness, used {@link #availableMeals} to denote "do-able-ility".
+     Flag that represents full completeness, used in both {@link #catagorizedMeals} and {@link #compare(Meal)} to denote whether a meal/ingredient is do-able/present.
      */
     public static final int FULL = 2;
 
     /**
-     * Holds the list of selected meals to check for "complete-ability", loaded by the constructor
+     * Holds the list of selected meals to be searched, loaded through constructor
      */
     private List<Meal> mealList;
 
@@ -40,14 +40,15 @@ public class Search {
     Holds ingredients that user has access to, loaded by the constructor
      */
     private HashMap<String, Ingredient> availableIngredients;
+
     /**
     Organizes meals pulled from {@link com.example.abyte.database.daos.MealDAO} by the levels of "do-able-ility".
      Used to provide results for the UI.
-     <br> Filled by {@link #checkCompleteness(String)}
+     <br> Filled by {@link #categorizeMeal(String)}
      <br> Keys - Uses number flags from above to denote completeness.
      <br> Values - Holds lists of meal names, used to reference the checked ingredient values in {@link #checkedMeals}
      */
-    private HashMap<Integer, List<String>> availableMeals;
+    private HashMap<Integer, List<String>> catagorizedMeals;
 
     /**
      * Holds information relating to each meal that was compared with {@link #compare(Meal)}
@@ -65,10 +66,10 @@ public class Search {
     public Search(List<Meal> mealList, HashMap<String, Ingredient> availableIngredients){
         this.mealList = mealList;
         this.availableIngredients = availableIngredients;
-        availableMeals = new HashMap<>();
-        availableMeals.put(FULL, new ArrayList<>());
-        availableMeals.put(PARTIAL, new ArrayList<>());
-        availableMeals.put(MISSING, new ArrayList<>());
+        catagorizedMeals = new HashMap<>();
+        catagorizedMeals.put(FULL, new ArrayList<>());
+        catagorizedMeals.put(PARTIAL, new ArrayList<>());
+        catagorizedMeals.put(MISSING, new ArrayList<>());
         checkedMeals = new HashMap<>();
     }
 
@@ -84,13 +85,13 @@ public class Search {
     /**
      * Takes a {@link Meal} and saves relevant information to be accessed through the meals activity
      * <br> Compares a meal using {@link #compare(Meal)} to store information of which ingredients are present for the selected meal
-     * <br> Uses the compared meal and then sorts it into one of 3 catagories, not possible, partially do-able, and fully do-able using {@link #checkCompleteness(String)}
+     * <br> Uses the compared meal and then sorts it into one of 3 catagories, not possible, partially do-able, and fully do-able using {@link #categorizeMeal(String)}
      * @param meal The meal to be compared the {@link #availableIngredients}
      */
     public void search(Meal meal){
         HashMap<Integer, List<Ingredient>> map = compare(meal);
         checkedMeals.put(meal.getMealName(),map);
-        checkCompleteness(meal.getMealName());
+        categorizeMeal(meal.getMealName());
 
     }
 
@@ -101,6 +102,10 @@ public class Search {
      * @return A Hashmap organizing which ingredients are missing
      */
     public HashMap<Integer, List<Ingredient>> compare(Meal meal) {
+        if (meal == null) {
+            System.err.println("ERROR AT COMPARE: Meal is null, problem inserting meal");
+            return null;
+        }
         List<Ingredient> missingIngredientList = new ArrayList<>();
         List<Ingredient> partialIngredientList = new ArrayList<>();
         List<Ingredient> fullIngredientList = new ArrayList<>();
@@ -112,7 +117,7 @@ public class Search {
             boolean isImportant = i.isImportant();
 
             //If ingredient is not in user's collection, mark as missing, otherwise check if theres enough
-            if (!availableIngredients.containsKey(i.getName()) && isImportant) {
+            if (!availableIngredients.containsKey(i.getName())) {
                 missingIngredientList.add(i);
                 continue;
             }
@@ -137,22 +142,22 @@ public class Search {
     }
 
     /**
-     * Checks a meal that was compared to the {@link #availableIngredients}, flags meal based on whether or not it is missing ingredients
+     * Checks a meal that was compared to the {@link #catagorizedMeals}, flags meal based on whether or not it is missing ingredients
      * <br> - If a main ingredient is missing, marked as uncompletable
      * <br> - If there are any main ingredients partially available and or small aspects missing, mark as partially completable
      * <br> - If all ingredients are present, mark as ready to make
      * @param mealName The name of the meal that has previously been compared and ready for categorizing
-     * @return Returns false if there was an error mid program and meal name was not added to {@link #availableMeals}, otherwise true
+     * @return Returns false if there was an error mid program and meal name was not added to {@link #catagorizedMeals}, otherwise true
      */
-    public boolean checkCompleteness(String mealName){
+    public boolean categorizeMeal(String mealName){
         if(checkedMeals == null){
-            System.out.println("ERROR AT CHECK COMPLETENESS: The checkedMeals Hashmap is null, there was problem instantiated search class");
+            System.err.println("ERROR AT CATEGORIZE MEAL: The categorizedMeals Hashmap is null, there was problem instantiated search class");
             return false;
         } else if (checkedMeals.isEmpty()) {
-            System.out.println("ERROR AT CHECK COMPLETENESS: The checkedMeals Hashmap is empty, problem comparing meal");
+            System.err.println("ERROR AT CATEGORIZE MEAL: The categorizedMeals Hashmap is empty, problem comparing meal");
             return false;
         } else if (!checkedMeals.containsKey(mealName)){
-            System.out.println("ERROR AT CHECK COMPLETENESS: The Meal Name to be checked for completeness is not presents or the name is entered incorrectly");
+            System.err.println("ERROR AT CATEGORIZE MEAL: The Meal Name \"" + mealName + "\" is not in the categorizedMeals Hashmap");
             return false;
         }
 
@@ -160,36 +165,38 @@ public class Search {
         HashMap<Integer, List<Ingredient>> currMealMap = checkedMeals.get(mealName);
 
         if (!currMealMap.containsKey(MISSING)) {
-            System.out.println("ERROR AT CHECK COMPLETENESS: There is no entry for NOT_AVAILABLE");
+            System.err.println("ERROR AT CATEGORIZE MEAL: There is no entry for MISSING");
+            return false;
+        } else if (!currMealMap.containsKey(PARTIAL)) {
+            System.err.println("ERROR AT CATEGORIZE MEAL: There is no entry for PARTIAL");
+            return false;
+        } if (!currMealMap.containsKey(FULL)) {
+            System.err.println("ERROR AT CATEGORIZE MEAL: There is no entry for FULL");
             return false;
         }
+
+
+        System.out.println("Categorizing meal " + mealName + ": " + currMealMap.toString());
         currList = currMealMap.get(MISSING);
         assert currList != null;
-        if (!currList.isEmpty()) {
-            //Iterates all through the missing ingredients, if a main ingredient is missing, flag recipe as not completable
-            for (Ingredient cm : currList) {
-                if (cm.isImportant()){
-                    //TODO: Possibly remove excessive code here
-                    availableMeals.get(MISSING).add(mealName);
-                    return true;
-                }
+        for (Ingredient i : currList) {
+            if (i.isImportant()) {
+                catagorizedMeals.get(MISSING).add(mealName);
+                return true;
+            } else {
+                catagorizedMeals.get(PARTIAL).add(mealName);
+                return true;
             }
         }
 
-        if (!currMealMap.containsKey(PARTIAL)) {
-            System.out.println("ERROR AT CHECK COMPLETENESS: There is no entry for PARTIAL");
-            return false;
-        }
         currList = currMealMap.get(PARTIAL);
-        //If there is at least 1 ingredient inside of PARTIAL, mark recipe as partially completable
+        assert currList != null;
         if (!currList.isEmpty()) {
-            //TODO: Possibly remove excessive code here
-            availableMeals.get(PARTIAL).add(mealName);
+            catagorizedMeals.get(PARTIAL).add(mealName);
             return true;
         }
 
-        //If none of the previous flags were tripped, then it must be fully completable
-        availableMeals.get(FULL).add(mealName);
+        catagorizedMeals.get(FULL).add(mealName);
         return true;
     }
 
@@ -201,8 +208,8 @@ public class Search {
         return availableIngredients;
     }
 
-    public HashMap<Integer, List<String>> getAvailableMeals() {
-        return availableMeals;
+    public HashMap<Integer, List<String>> getCategorizedMeals() {
+        return catagorizedMeals;
     }
 
     public HashMap<String, HashMap<Integer, List<Ingredient>>> getCheckedMeals() {
