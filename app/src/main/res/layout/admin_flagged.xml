@@ -24,7 +24,7 @@
         app:layout_constraintTop_toBottomOf="@id/adminFlaggedTextView"
         app:layout_constraintBottom_toBottomOf="@id/adminFlaggedBack"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parents">
+        app:layout_constraintEnd_toEndOf="parent">
         <LinearLayout
             android:id="@+id/flaggedList"
             android:layout_width="match_parent"

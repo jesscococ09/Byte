@@ -29,4 +29,7 @@ public interface UserDAO {
 
     @Query("SELECT * from "+ByteDatabase.USER_TABLE+" WHERE userId == :userId")
     LiveData<User> getUserByUserId(int userId);
+
+    @Query("DELETE FROM " + ByteDatabase.USER_TABLE+" WHERE username == :username")
+    void deleteUserByUsername(String username);
 }
