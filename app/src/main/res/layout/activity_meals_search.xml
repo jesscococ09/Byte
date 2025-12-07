@@ -5,15 +5,17 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MealFavoritesActivity">
+    tools:context=".MealSearchActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/mealRecyclerView"
+        android:id="@+id/mealSearchRecyclerView"
         android:layout_width="409dp"
         android:layout_height="729dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/meal_recycler_row"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

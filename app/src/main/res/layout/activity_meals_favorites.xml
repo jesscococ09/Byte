@@ -7,14 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".MealFavoritesActivity">
 
-<androidx.recyclerview.widget.RecyclerView
-android:id="@+id/logDisplayRecyclerView"
-android:layout_width="0dp"
-android:layout_height="300dp"
-android:layout_marginTop="16dp"
-android:padding="2dp"
-app:layout_constraintEnd_toEndOf="parent"
-app:layout_constraintStart_toStartOf="parent"
-app:layout_constraintTop_toTopOf="parent"
-tools:listitem="@layout/byte_recycler_item"
-    />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mealFavoritesRecyclerView"
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/meal_recycler_row"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
