@@ -4,17 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
-import com.example.abyte.R;
-import com.example.abyte.fragments.AdminAct_Analytics;
 import com.example.abyte.fragments.AdminAct_Bugs;
-import com.example.abyte.fragments.AdminAct_Flagged;
 import com.example.abyte.fragments.AdminAct_Settings;
-import com.example.abyte.fragments.AdminAct_Themes;
-import com.example.abyte.fragments.AdminAct_Users;
 
 public class AdminActivity extends Fragment {
     @Override
@@ -22,10 +15,10 @@ public class AdminActivity extends Fragment {
                              Bundle savedInstanceState){
         return inflater.inflate(R.layout.admin_home, container, false);
     }
-
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
+
         view.findViewById(R.id.viewAdminBugsButton).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -38,38 +31,13 @@ public class AdminActivity extends Fragment {
                 openFragment(new AdminAct_Settings());
             }
         });
-        view.findViewById(R.id.viewAdminThemesButton).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                openFragment(new AdminAct_Themes());
-            }
-        });
         view.findViewById(R.id.adminBackButton).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 requireActivity().getSupportFragmentManager().popBackStack();
             }
         });
-        view.findViewById(R.id.viewAdminUsers).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                openFragment(new AdminAct_Users());
-            }
-        });
-        view.findViewById(R.id.viewAdminFlagged).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                openFragment(new AdminAct_Flagged());
-            }
-        });
-        view.findViewById(R.id.viewAdminAnalytics).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                openFragment(new AdminAct_Analytics());
-            }
-        });
     }
-
     private void openFragment(Fragment frag){
         requireActivity().getSupportFragmentManager().beginTransaction().
                 replace(R.id.fragmentContainer, frag).addToBackStack(null).commit();

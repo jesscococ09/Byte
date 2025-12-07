@@ -9,12 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
 import com.example.abyte.R;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,11 +25,13 @@ public class AdminAct_Flagged extends Fragment{
                              Bundle savedInstance){
         return inflater.inflate(R.layout.admin_flagged, container, false);
     }
-
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
+
         flaggedList = view.findViewById(R.id.flaggedList);
+
         loadFlaggedUsers();
+
         view.findViewById(R.id.adminFlaggedBack).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -40,12 +39,14 @@ public class AdminAct_Flagged extends Fragment{
             }
         });
     }
-
     @SuppressLint("SetTextI18n")
     private void loadFlaggedUsers(){
         flaggedList.removeAllViews();
+
         Set<String> flagged = getFlaggedUser();
+
         LayoutInflater inflater = LayoutInflater.from(getContext());
+
         if(flagged.isEmpty()){
             TextView e = new TextView(getContext());
             e.setText(R.string.no_flagged_users);
@@ -54,15 +55,18 @@ public class AdminAct_Flagged extends Fragment{
         }
         for(String username : flagged){
             View v = inflater.inflate(R.layout.byte_recycler_item, flaggedList, false);
+
             TextView tv = v.findViewById(R.id.recyclerItemTextview);
             tv.setText(username + getString(R.string.is_now_flagged));
+
             flaggedList.addView(v);
         }
     }
-
     private Set<String> getFlaggedUser(){
         SharedPreferences prefs = requireActivity().getSharedPreferences(PREFS_NAMES, Context.MODE_PRIVATE);
+
         Set<String> stored = prefs.getStringSet(FLAGGED_USERS_KEY, null);
+
         if(stored == null){
             return new HashSet<String>();
         }
