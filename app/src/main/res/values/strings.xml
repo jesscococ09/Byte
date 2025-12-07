@@ -4,8 +4,6 @@
     <string name="create_meals">Create Meals</string>
     <string name="find_meals">Find Meals</string>
     <string name="saved_meals">Saved Meals</string>
-    <string name="themes">Themes</string>
-    <string name="settings">Settings</string>
     <string name="username">Username</string>
     <string name="welcome_to_byte_please_sign_in">Welcome to Byte. Please Sign in!</string>
     <string name="password">Password</string>
@@ -27,4 +25,34 @@
     <string name="Small">Small</string>
     <string name="Large">Large</string>
     <string name="Normal">Normal</string>
+    <string name="forgot_password"><u>Forgot Password?</u></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="forgot_password_enter_username">Enter Username and Security Key</string>
+    <string name="security_key">Security key</string>
+    <string name="submit">Submit!</string>
+    <string name="sign_up">Sign Up!</string>
+    <string name="please_sign_up">Please Sign Up!</string>
+    <string name="please_enter_a_recovery_word">Please enter a recovery word:</string>
+    <string name="back">back</string>
+    <string name="settings">settings</string>
+    <string name="themes">themes</string>
+    <string name="Themes">Themes</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="system_default">System Default</string>
+    <string name="Settings">Settings</string>
+    <string name="allow_new_user_registration">Allow New User Registration</string>
+    <string name="maintenance_mode">Maintenance Mode</string>
+    <string name="save_settings">Save Settings</string>
+    <string name="bugs">Bugs</string>
+    <string name="view_bugs">View Bugs</string>
+    <string name="add_bug">Add Bug</string>
+    <string name="delete_bug">Delete Bug</string>
+    <string name="welcome_admin">Welcome, Admin</string>
+    <string name="stats">STATS</string>
+    <string name="total_mealdb_meals_0">Total MealDB Meals: 0</string>
+    <string name="total_bugs_0">Total Bugs: 0</string>
+    <string name="total_meals_0">Total Meals: 0</string>
+    <string name="total_supabase_meals_0">Total Supabase Meals: 0</string>
 </resources>
