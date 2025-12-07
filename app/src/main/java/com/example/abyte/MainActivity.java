@@ -128,7 +128,7 @@ public class MainActivity extends BaseActivity {
                 findViewById(R.id.fragmentContainer).setVisibility(View.VISIBLE);
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
-                        new com.example.abyte.fragments.Admin()).addToBackStack("AdminHome").
+                        new com.example.abyte.AdminActivity()).addToBackStack("AdminHome").
                         commit();
             }
         });

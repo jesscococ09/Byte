@@ -1,4 +1,4 @@
-package com.example.abyte.fragments;
+package com.example.abyte;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,8 +9,14 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.abyte.R;
+import com.example.abyte.fragments.AdminAct_Analytics;
+import com.example.abyte.fragments.AdminAct_Bugs;
+import com.example.abyte.fragments.AdminAct_Flagged;
+import com.example.abyte.fragments.AdminAct_Settings;
+import com.example.abyte.fragments.AdminAct_Themes;
+import com.example.abyte.fragments.AdminAct_Users;
 
-public class Admin extends Fragment {
+public class AdminActivity extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
