@@ -4,23 +4,28 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LiveData;
-
 import com.example.abyte.database.entities.User;
 import com.example.abyte.databinding.ActivityMainBinding;
 import com.example.abyte.database.repositories.UserRepository;
-
-public class MainActivity extends AppCompatActivity {
+//
+public class MainActivity extends BaseActivity {
     private static final String MAIN_ACTIVITY_USER_ID="com.example.abyte.MAIN_ACTIVITY_USER_ID";
     static final String SAVED_INSTANCE_STATE_USERID_KEY="com.example.abyte.SAVED_INSTANCE_STATE_USERID_KEY";
     private static final int LOGGED_OUT=-1;
@@ -33,11 +38,35 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        SharedPreferences prefs = getSharedPreferences("settings", MODE_PRIVATE);
+        String themeName = prefs.getString("app_theme", "AppTheme");
+        int themeResId = getResources().getIdentifier(themeName, "style", getPackageName());
+        setTheme(themeResId);
+
+        SharedPreferences prefs2 = getSharedPreferences("prefs2", MODE_PRIVATE);
+        boolean themeOff = prefs2.getBoolean("theme_off", true);
+        String themeName2 = themeOff ? "ThemeWhite" : prefs2.getString("app_theme", "AppTheme");
+        int themeResId2 = getResources().getIdentifier(themeName2, "style", getPackageName());
+        setTheme(themeResId2);
+
+
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);
+
+        SharedPreferences prefs3 = getSharedPreferences("prefs3", MODE_PRIVATE);
+        int fontSize = prefs3.getInt("font_size", 16); // default 16sp
+
+        TextView myText = findViewById(R.id.byteLabelTextView);
+        myText.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
+
         binding=ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         repository=UserRepository.getRepository(getApplication());
         loginUser(savedInstanceState);
+
+
 
         if(loggedinuserid==-1){
             Intent intent=LoginActivity.loginIntentFactory(getApplication());
@@ -45,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
         updateSharedPreference();
+
 
         binding.byteCreateMealsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,17 +97,19 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"third button",Toast.LENGTH_SHORT).show();
             }
         });
-        binding.byteThemesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //bing to themes.xml
-                Toast.makeText(MainActivity.this,"fourth button",Toast.LENGTH_SHORT).show();
-            }
+
+        Button themeButton = findViewById(R.id.byteThemesButton);
+
+        themeButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ThemeActivity.class);
+            startActivity(intent);
         });
-        ImageButton settingsButton1 = findViewById(R.id.byteSettingsButton);
-        settingsButton1.setOnClickListener(new View.OnClickListener() {
+
+        ImageButton settingsButton = findViewById(R.id.byteSettingsButton);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Open settings screen or perform your action
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
             }
@@ -85,9 +117,44 @@ public class MainActivity extends AppCompatActivity {
         binding.isadminImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Admin button is working",Toast.LENGTH_SHORT).show();
+                binding.byteLabelTextView.setVisibility(View.GONE);
+                binding.byteCreateMealsButton.setVisibility(View.GONE);
+                binding.byteFindMealsButton.setVisibility(View.GONE);
+                binding.byteSavedMealsButton.setVisibility(View.GONE);
+                binding.byteThemesButton.setVisibility(View.GONE);
+                binding.byteSettingsButton.setVisibility(View.GONE);
+                binding.logDisplayRecyclerView.setVisibility(View.GONE);
+
+                findViewById(R.id.fragmentContainer).setVisibility(View.VISIBLE);
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
+                        new com.example.abyte.AdminActivity()).addToBackStack("AdminHome").
+                        commit();
             }
         });
+
+
+        getSupportFragmentManager().addOnBackStackChangedListener(
+                new androidx.fragment.app.FragmentManager.OnBackStackChangedListener(){
+                    @Override
+                    public void onBackStackChanged(){
+                        int count = getSupportFragmentManager().getBackStackEntryCount();
+
+                        if(count == 0){
+
+                            binding.byteLabelTextView.setVisibility(View.VISIBLE);
+                            binding.byteCreateMealsButton.setVisibility(View.VISIBLE);
+                            binding.byteFindMealsButton.setVisibility(View.VISIBLE);
+                            binding.byteSavedMealsButton.setVisibility(View.VISIBLE);
+                            binding.byteThemesButton.setVisibility(View.VISIBLE);
+                            binding.byteSettingsButton.setVisibility(View.VISIBLE);
+                            binding.logDisplayRecyclerView.setVisibility(View.VISIBLE);
+
+                            findViewById(R.id.fragmentContainer).setVisibility(View.GONE);
+                        }
+                    }
+                }
+        );
     }
     private void loginUser(Bundle savedInstanceState){
         SharedPreferences sharedPreferences= getSharedPreferences(getString(R.string.preference_file_key),
@@ -123,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
         outState.putInt(SAVED_INSTANCE_STATE_USERID_KEY,loggedinuserid);
         updateSharedPreference();
     }
-
+//recycler tools
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater=getMenuInflater();
@@ -189,7 +256,5 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(MAIN_ACTIVITY_USER_ID,userID);
         return intent;
     }
-
-
 
 }
