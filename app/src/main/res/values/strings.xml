@@ -37,11 +37,4 @@
     <string name="add_bug">Add Bug</string>
     <string name="delete_bug">Delete Bug</string>
     <string name="welcome_admin">Welcome, Admin</string>
-    <string name="dashboard">Dashboard</string>
-    <string name="users">Users</string>
-    <string name="flagged">Flagged</string>
-    <string name="analytics">Analytics</string>
-    <string name="no_flagged_users">No flagged users</string>
-    <string name="is_now_flagged">" is now FLAGGED!!!"</string>
-    <string name="no_users_found">No users found</string>
 </resources>
