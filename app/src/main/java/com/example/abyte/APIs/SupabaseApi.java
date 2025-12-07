@@ -16,7 +16,7 @@ import retrofit2.http.Query;
 
 public interface SupabaseApi {
     @GET("recipes")
-    Call<List<Recipe>> getRecipes(@Query("select") String select);
+    Call<List<Recipe>> getRecipes(@Query("select") String select,@Query("count") String count);
 
     //for Recipe count only
     @POST("rpc/count_recipes")
