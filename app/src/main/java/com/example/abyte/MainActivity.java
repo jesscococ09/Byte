@@ -49,21 +49,23 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //bing to create_meals.xml
-                Toast.makeText(MainActivity.this,"first button",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"NOT IMPLEMENTED YET",Toast.LENGTH_SHORT).show();
             }
         });
         binding.byteFindMealsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //bing to find_meals.xml
-                Toast.makeText(MainActivity.this,"second button",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this,"second button",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, MealSearchActivity.class));
             }
         });
         binding.byteSavedMealsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //bing to saved_meals.xml
-                Toast.makeText(MainActivity.this,"third button",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this,"third button",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, MealFavoritesActivity.class));
             }
         });
         binding.byteThemesButton.setOnClickListener(new View.OnClickListener() {
