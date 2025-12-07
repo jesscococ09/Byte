@@ -44,7 +44,24 @@ public class Admin extends Fragment {
                 requireActivity().getSupportFragmentManager().popBackStack();
             }
         });
-
+        view.findViewById(R.id.viewAdminUsers).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openFragment(new AdminAct_Users());
+            }
+        });
+        view.findViewById(R.id.viewAdminFlagged).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openFragment(new AdminAct_Flagged());
+            }
+        });
+        view.findViewById(R.id.viewAdminAnalytics).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openFragment(new AdminAct_Analytics());
+            }
+        });
     }
 
     private void openFragment(Fragment frag){

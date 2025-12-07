@@ -67,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@id/adminAnalyticsContent"
         app:layout_constraintBottom_toBottomOf="@id/adminAnalyticsBackButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parents">
+        app:layout_constraintEnd_toEndOf="parent">
         <LinearLayout
             android:id="@+id/ListContainer"
             android:layout_width="match_parent"
