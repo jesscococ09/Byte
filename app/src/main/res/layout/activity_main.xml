@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity" >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/logDisplayRecyclerView"
@@ -16,76 +17,72 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/byte_recycler_item"
-        />
+        tools:listitem="@layout/byte_recycler_item" />
 
     <TextView
         android:id="@+id/byteLabelTextView"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
+        android:layout_width="275dp"
+        android:layout_height="115dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="80dp"
         android:gravity="center"
         android:text="@string/welcome_user"
-        android:textSize="40sp"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintHorizontal_bias="0.433"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/byteCreateMealsButton"
-        android:layout_width="300dp"
-        android:layout_height="120dp"
+        android:layout_width="275dp"
+        android:layout_height="115dp"
         android:padding="2dp"
         android:text="@string/create_meals"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/byteLabelTextView" />
 
     <Button
         android:id="@+id/byteFindMealsButton"
-        android:layout_width="300dp"
-        android:layout_height="120dp"
+        android:layout_width="275dp"
+        android:layout_height="115dp"
         android:padding="2dp"
         android:text="@string/find_meals"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/byteCreateMealsButton"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintTop_toBottomOf="@id/byteCreateMealsButton" />
+
     <Button
         android:id="@+id/byteSavedMealsButton"
-        android:layout_width="300dp"
-        android:layout_height="120dp"
+        android:layout_width="275dp"
+        android:layout_height="115dp"
         android:padding="2dp"
         android:text="@string/saved_meals"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/byteFindMealsButton"
         app:layout_constraintStart_toStartOf="parent"
-        />
-    <Button
+        app:layout_constraintTop_toBottomOf="@id/byteFindMealsButton" />
 
+    <Button
         android:id="@+id/byteThemesButton"
-        android:layout_width="300dp"
-        android:layout_height="120dp"
+        android:layout_width="275dp"
+        android:layout_height="115dp"
         android:padding="2dp"
         android:text="@string/themes"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/byteSavedMealsButton"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/byteSettingsButton"
         style="@android:style/Widget.DeviceDefault.ImageButton"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:adjustViewBounds="true"
         android:background="@android:color/transparent"
         android:backgroundTint="@android:color/widget_edittext_dark"
@@ -94,16 +91,15 @@
         android:scaleType="fitCenter"
         android:src="@drawable/ic_setting_icon"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.378"
+        app:layout_constraintHorizontal_bias="0.398"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/byteThemesButton" />
-
 
     <ImageButton
         android:id="@+id/isadminImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
+        android:layout_marginStart="4dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/adminbutton"
         android:src="@drawable/ic_admin_icon"
@@ -111,7 +107,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/byteSettingsButton"
         app:layout_constraintStart_toEndOf="@+id/byteSettingsButton"
         app:layout_constraintTop_toTopOf="@+id/byteSettingsButton"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.666"
         tools:visibility="visible" />
 
     <FrameLayout

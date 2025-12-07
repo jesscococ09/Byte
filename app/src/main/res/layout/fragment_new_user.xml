@@ -5,20 +5,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.NewUserFragment">
+    tools:context=".fragments.NewUserFragment" >
 
     <TextView
         android:id="@+id/titleSignUpTextView"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_margin="16dp"
+        android:layout_width="375dp"
+        android:layout_height="135dp"
+        android:layout_marginTop="52dp"
         android:gravity="center"
         android:text="@string/please_sign_up"
         android:textSize="30sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/newUserNameEditText"
         android:layout_width="match_parent"
@@ -32,8 +32,7 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleSignUpTextView"
-        />
+        app:layout_constraintTop_toBottomOf="@id/titleSignUpTextView" />
 
     <EditText
         android:id="@+id/newUserPasswordEditText"
@@ -47,8 +46,8 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/newUserNameEditText"
-        />
+        app:layout_constraintTop_toBottomOf="@id/newUserNameEditText" />
+
     <TextView
         android:id="@+id/newUserSecurityKeyTextView"
         android:layout_width="match_parent"
@@ -59,8 +58,8 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/newUserPasswordEditText"
-        />
+        app:layout_constraintTop_toBottomOf="@id/newUserPasswordEditText" />
+
     <EditText
         android:id="@+id/newUserSecurityKeyEditText"
         android:layout_width="match_parent"
@@ -73,8 +72,8 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/newUserSecurityKeyTextView"
-        />
+        app:layout_constraintTop_toBottomOf="@id/newUserSecurityKeyTextView" />
+
     <Button
         android:id="@+id/newUserSubmitButton"
         android:layout_width="match_parent"
@@ -84,7 +83,5 @@
         android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/newUserSecurityKeyEditText"
-        />
-
+        app:layout_constraintTop_toBottomOf="@id/newUserSecurityKeyEditText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -56,4 +56,14 @@
     <string name="no_flagged_users">No flagged users</string>
     <string name="is_now_flagged">" is now FLAGGED!!!"</string>
     <string name="no_users_found">No users found</string>
+    <string name="manage_users">Manage Users</string>
+    <string name="add_user">Add User</string>
+    <string name="delete_user">Delete User</string>
+    <string name="flag_user">Flag User</string>
+    <string name="unflag_user">Unflag User</string>
+    <string name="flagged_users">Flagged Users</string>
+    <string name="total_users">Total Users:</string>
+    <string name="_0">0</string>
+    <string name="admin_users">Admin Users:</string>
+    <string name="regular_users">Regular Users:</string>
 </resources>
