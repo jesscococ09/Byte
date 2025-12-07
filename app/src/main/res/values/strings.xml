@@ -73,4 +73,8 @@
     <string name="total_bugs_0">Total Bugs: 0</string>
     <string name="user_summary">User Summary</string>
     <string name="user_list">User List</string>
+    <string name="bug_title_issue">Bug Title/ Issue</string>
+    <string name="bug_description">Bug Description...</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
 </resources>
