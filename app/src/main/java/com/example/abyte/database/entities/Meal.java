@@ -39,7 +39,7 @@ public class Meal {
     //
      //use @SerializedName it allows you to change variable name while keeping the JSON key
 
-    private String idMeal;
+    private int idMeal;
     private String strMeal;
     private String strCategory;
     private String strArea;
@@ -90,7 +90,7 @@ public class Meal {
 
     public Meal(){}
 
-    public Meal(String idMeal, String strMeal, String strCategory, String strArea, String strInstructions, String strMealThumb, String strTags) {
+    public Meal(int idMeal, String strMeal, String strCategory, String strArea, String strInstructions, String strMealThumb, String strTags) {
         this.idMeal = idMeal;
         this.strMeal = strMeal;
         this.strCategory = strCategory;
@@ -100,11 +100,11 @@ public class Meal {
         this.strTags = strTags;
     }
 
-    public String getIdMeal() {
+    public int getIdMeal() {
         return idMeal;
     }
 
-    public void setIdMeal(String idMeal) {
+    public void setIdMeal(int idMeal) {
         this.idMeal = idMeal;
     }
 
