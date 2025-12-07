@@ -36,8 +36,8 @@ public class MEAL_RecyclerViewAdapter extends RecyclerView.Adapter<MEAL_Recycler
     //Assigning values to the views created using meal_recycler_row.xml layout file
     public void onBindViewHolder(@NonNull MEAL_RecyclerViewAdapter.MyViewHolder holder, int position) {
         holder.mealName.setText(mealList.get(position).getMealName());
-        holder.mealStatus.setText(mealList.get(position).getStatus()); //TODO: Create way of storing status
-        holder.mealImage.setImageResource(mealList.get(position).getMealImage());
+//        holder.mealStatus.setText(mealList.get(position).getStatus()); //TODO: Create way of storing status
+        holder.mealImage.setImageResource(mealList.get(position).getImageFile());
     }
 
     @Override

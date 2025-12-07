@@ -3,6 +3,7 @@ package com.example.abyte.database.entities;
 import static androidx.room.ForeignKey.CASCADE;
 
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 import androidx.room.ForeignKey;
 
@@ -18,13 +19,13 @@ import java.util.List;
                 childColumns = "creatorId",
                 onDelete = CASCADE,
                 onUpdate = CASCADE
-        )
-})
+        )},
+        indices = {@Index(value = "creatorId")}
+)
 public class Meal {
     @PrimaryKey(autoGenerate = true)
     private int mealId;
     private String mealName;
-    //TODO: Maybe implement ingredientList as Hashmap, containing the ingredient and the amount
     private Ingredient[] ingredientArray;
     //TODO: Maybe change instuctions to be a string that contains a file name(an html file)
     private String instructionsFile;
@@ -65,16 +66,16 @@ public class Meal {
         return instructionsFile;
     }
 
+    public void setInstructionsFile(String instructionsFile) {
+        this.instructionsFile = instructionsFile;
+    }
+
     public String getMealName() {
         return mealName;
     }
 
     public void setMealName(String mealName) {
         this.mealName = mealName;
-    }
-
-    public void setInstructions(String instructionsFile) {
-        this.instructionsFile = instructionsFile;
     }
 
     public int getCreatorId() {
@@ -91,6 +92,14 @@ public class Meal {
 
     public void setPremium(boolean premiumBool) {
         this.isPremium = premiumBool;
+    }
+
+    public int getImageFile() {
+        return imageFile;
+    }
+
+    public void setImageFile(int imageFile) {
+        this.imageFile = imageFile;
     }
 
     @Override
