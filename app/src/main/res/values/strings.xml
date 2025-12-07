@@ -37,4 +37,17 @@
     <string name="add_bug">Add Bug</string>
     <string name="delete_bug">Delete Bug</string>
     <string name="welcome_admin">Welcome, Admin</string>
+    <string name="Orange">Orange</string>
+    <string name="White">White</string>
+    <string name="Pink">Pink</string>
+    <string name="Lime">Lime</string>
+    <string name="BabyBlue">Baby Blue</string>
+    <string name="Cyan">Cyan</string>
+    <string name="Magenta">Magenta</string>
+    <string name="Settings">Settings</string>
+    <string name="Theme_off_switch">Theme off switch</string>
+    <string name="Return">Return</string>
+    <string name="Small">Small</string>
+    <string name="Large">Large</string>
+    <string name="Normal">Normal</string>
 </resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:colorBackground">@color/theme_white</item>
+    </style>
+
+    <style name="ThemePink" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:colorBackground">@color/theme_pink</item>
+    </style>
+
+    <style name="ThemeBabyBlue" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:colorBackground">@color/theme_baby_blue</item>
+    </style>
+
+    <style name="ThemeOrange" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:colorBackground">@color/ThemeOrange</item>
+    </style>
+
+    <style name="Lime" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:colorBackground">@color/Lime</item>
+    </style>
+    <style name="Cyan" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:colorBackground">@color/Cyan</item>
+    </style>
+    <style name="Magenta" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:colorBackground">@color/Magenta</item>
+    </style>
+    //
+</resources>
