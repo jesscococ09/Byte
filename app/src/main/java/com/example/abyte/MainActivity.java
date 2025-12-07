@@ -14,7 +14,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LiveData;
 
 import com.example.abyte.database.entities.User;
@@ -86,42 +85,9 @@ public class MainActivity extends AppCompatActivity {
         binding.isadminImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                binding.byteLabelTextView.setVisibility(View.GONE);
-                binding.byteCreateMealsButton.setVisibility(View.GONE);
-                binding.byteFindMealsButton.setVisibility(View.GONE);
-                binding.byteSavedMealsButton.setVisibility(View.GONE);
-                binding.byteThemesButton.setVisibility(View.GONE);
-                binding.byteSettingsButton.setVisibility(View.GONE);
-                binding.logDisplayRecyclerView.setVisibility(View.GONE);
-
-                findViewById(R.id.fragmentContainer).setVisibility(View.VISIBLE);
-
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
-                        new com.example.abyte.fragments.Admin()).addToBackStack("AdminHome").
-                        commit();
+                Toast.makeText(MainActivity.this,"Admin button is working",Toast.LENGTH_SHORT).show();
             }
         });
-        getSupportFragmentManager().addOnBackStackChangedListener(
-                new androidx.fragment.app.FragmentManager.OnBackStackChangedListener(){
-                    @Override
-                    public void onBackStackChanged(){
-                        int count = getSupportFragmentManager().getBackStackEntryCount();
-
-                        if(count == 0){
-
-                            binding.byteLabelTextView.setVisibility(View.VISIBLE);
-                            binding.byteCreateMealsButton.setVisibility(View.VISIBLE);
-                            binding.byteFindMealsButton.setVisibility(View.VISIBLE);
-                            binding.byteSavedMealsButton.setVisibility(View.VISIBLE);
-                            binding.byteThemesButton.setVisibility(View.VISIBLE);
-                            binding.byteSettingsButton.setVisibility(View.VISIBLE);
-                            binding.logDisplayRecyclerView.setVisibility(View.VISIBLE);
-
-                            findViewById(R.id.fragmentContainer).setVisibility(View.GONE);
-                        }
-                    }
-                }
-        );
     }
     private void loginUser(Bundle savedInstanceState){
         SharedPreferences sharedPreferences= getSharedPreferences(getString(R.string.preference_file_key),
@@ -157,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         outState.putInt(SAVED_INSTANCE_STATE_USERID_KEY,loggedinuserid);
         updateSharedPreference();
     }
-//recycler tools
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater=getMenuInflater();
