@@ -66,4 +66,11 @@
     <string name="_0">0</string>
     <string name="admin_users">Admin Users:</string>
     <string name="regular_users">Regular Users:</string>
+    <string name="stats">Stats</string>
+    <string name="total_meals_mealdb_0">Total Meals (MealDB): 0</string>
+    <string name="total_supabase_meals_0">Total Supabase Meals: 0</string>
+    <string name="total_meals_0">Total Meals: 0</string>
+    <string name="total_bugs_0">Total Bugs: 0</string>
+    <string name="user_summary">User Summary</string>
+    <string name="user_list">User List</string>
 </resources>
