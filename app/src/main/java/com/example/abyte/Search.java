@@ -162,6 +162,7 @@ public class Search {
         }
 
         List<Ingredient> currList;
+        int currentFlag;
         HashMap<Integer, List<Ingredient>> currMealMap = checkedMeals.get(mealName);
 
         if (!currMealMap.containsKey(MISSING)) {
@@ -175,8 +176,7 @@ public class Search {
             return false;
         }
 
-
-        System.out.println("Categorizing meal " + mealName + ": " + currMealMap.toString());
+        boolean markedPartial = false;
         currList = currMealMap.get(MISSING);
         assert currList != null;
         for (Ingredient i : currList) {
@@ -184,11 +184,14 @@ public class Search {
                 catagorizedMeals.get(MISSING).add(mealName);
                 return true;
             } else {
-                catagorizedMeals.get(PARTIAL).add(mealName);
-                return true;
+                markedPartial = true;
             }
         }
 
+        if (markedPartial) {
+            catagorizedMeals.get(PARTIAL).add(mealName);
+            return true;
+        }
         currList = currMealMap.get(PARTIAL);
         assert currList != null;
         if (!currList.isEmpty()) {
