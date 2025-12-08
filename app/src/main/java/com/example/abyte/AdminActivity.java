@@ -38,11 +38,6 @@ public class AdminActivity extends Fragment {
             analyticsBtn.setVisibility(View.GONE);
         }
 
-        View themesBtn = view.findViewById(R.id.viewAdminThemesButton);
-        if (themesBtn != null) {
-            themesBtn.setVisibility(View.GONE);
-        }
-
         View settingsBtn = view.findViewById(R.id.viewAdminSettingsButton);
         if (settingsBtn != null) {
             settingsBtn.setOnClickListener(new View.OnClickListener() {
@@ -53,15 +48,6 @@ public class AdminActivity extends Fragment {
             });
         }
 
-        View bugsBtn = view.findViewById(R.id.viewAdminBugsButton);
-        if (bugsBtn != null) {
-            bugsBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    openFragment(new com.example.abyte.fragments.AdminAct_Bugs());
-                }
-            });
-        }
 
         View backBtn = view.findViewById(R.id.adminBackButton);
         if (backBtn != null){

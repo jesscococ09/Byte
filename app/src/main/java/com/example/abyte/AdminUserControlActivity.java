@@ -22,15 +22,6 @@ public class AdminUserControlActivity extends Fragment {
             settingsBtn.setVisibility(View.GONE);
         }
 
-        View bugsBtn = view.findViewById(R.id.viewAdminBugsButton);
-        if (bugsBtn != null) {
-            bugsBtn.setVisibility(View.GONE);
-        }
-
-        View themesBtn = view.findViewById(R.id.viewAdminThemesButton);
-        if (themesBtn != null) {
-            themesBtn.setVisibility(View.GONE);
-        }
 
         View usersBtn = view.findViewById(R.id.viewAdminUsers);
         if (usersBtn != null) {
