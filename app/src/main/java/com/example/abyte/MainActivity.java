@@ -27,8 +27,6 @@ import com.example.abyte.database.repositories.UserRepository;
 import com.example.abyte.fragments.AdminAct_Settings;
 //
 public class MainActivity extends BaseActivity {
-//
-public class MainActivity extends BaseActivity {
     private static final String MAIN_ACTIVITY_USER_ID="com.example.abyte.MAIN_ACTIVITY_USER_ID";
     static final String SAVED_INSTANCE_STATE_USERID_KEY="com.example.abyte.SAVED_INSTANCE_STATE_USERID_KEY";
     private static final int LOGGED_OUT=-1;
@@ -55,21 +53,7 @@ public class MainActivity extends BaseActivity {
 
 
 
-
-        SharedPreferences prefs = getSharedPreferences("settings", MODE_PRIVATE);
-        String themeName = prefs.getString("app_theme", "AppTheme");
-        int themeResId = getResources().getIdentifier(themeName, "style", getPackageName());
-        setTheme(themeResId);
-
-        SharedPreferences prefs2 = getSharedPreferences("prefs2", MODE_PRIVATE);
-        boolean themeOff = prefs2.getBoolean("theme_off", true);
-        String themeName2 = themeOff ? "ThemeWhite" : prefs2.getString("app_theme", "AppTheme");
-        int themeResId2 = getResources().getIdentifier(themeName2, "style", getPackageName());
-        setTheme(themeResId2);
-
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         setContentView(R.layout.activity_main);
 
         SharedPreferences prefs3 = getSharedPreferences("prefs3", MODE_PRIVATE);
@@ -97,14 +81,12 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //bing to create_meals.xml
-                Toast.makeText(MainActivity.this,"first button",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"Disabled",Toast.LENGTH_SHORT).show();
             }
         });
         binding.byteFindMealsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //bing to find_meals.xml
-//                Toast.makeText(MainActivity.this,"second button",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MainActivity.this, MealSearchActivity.class));
             }
         });
@@ -112,16 +94,9 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //bing to saved_meals.xml
-//                Toast.makeText(MainActivity.this,"third button",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MainActivity.this, MealFavoritesActivity.class));
+                Toast.makeText(MainActivity.this,"DISABLED",Toast.LENGTH_SHORT).show();
             }
         });
-
-        Button themeButton = findViewById(R.id.byteThemesButton);
-
-        themeButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, ThemeActivity.class);
-            startActivity(intent);
 
         Button themeButton = findViewById(R.id.byteThemesButton);
 
@@ -139,30 +114,6 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
-
-        ImageButton settingsButton = findViewById(R.id.byteSettingsButton);
-        settingsButton.setOnClickListener(new View.OnClickListener() {
-        binding.isadminImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Open settings screen or perform your action
-                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                startActivity(intent);
-                binding.byteLabelTextView.setVisibility(View.GONE);
-                binding.byteCreateMealsButton.setVisibility(View.GONE);
-                binding.byteFindMealsButton.setVisibility(View.GONE);
-                binding.byteSavedMealsButton.setVisibility(View.GONE);
-                binding.byteThemesButton.setVisibility(View.GONE);
-                binding.byteSettingsButton.setVisibility(View.GONE);
-                binding.logDisplayRecyclerView.setVisibility(View.GONE);
-
-                findViewById(R.id.fragmentContainer).setVisibility(View.VISIBLE);
-
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
-                        new com.example.abyte.AdminActivity()).addToBackStack("AdminHome").
-                        commit();
-            }
-        });
         binding.isadminImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -177,33 +128,10 @@ public class MainActivity extends BaseActivity {
                 findViewById(R.id.fragmentContainer).setVisibility(View.VISIBLE);
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
-                        new com.example.abyte.AdminActivity()).addToBackStack("AdminHome").
+                                new com.example.abyte.AdminActivity()).addToBackStack("AdminHome").
                         commit();
             }
         });
-
-
-        getSupportFragmentManager().addOnBackStackChangedListener(
-                new androidx.fragment.app.FragmentManager.OnBackStackChangedListener(){
-                    @Override
-                    public void onBackStackChanged(){
-                        int count = getSupportFragmentManager().getBackStackEntryCount();
-
-                        if(count == 0){
-
-                            binding.byteLabelTextView.setVisibility(View.VISIBLE);
-                            binding.byteCreateMealsButton.setVisibility(View.VISIBLE);
-                            binding.byteFindMealsButton.setVisibility(View.VISIBLE);
-                            binding.byteSavedMealsButton.setVisibility(View.VISIBLE);
-                            binding.byteThemesButton.setVisibility(View.VISIBLE);
-                            binding.byteSettingsButton.setVisibility(View.VISIBLE);
-                            binding.logDisplayRecyclerView.setVisibility(View.VISIBLE);
-
-                            findViewById(R.id.fragmentContainer).setVisibility(View.GONE);
-                        }
-                    }
-                }
-        );
 
 
         getSupportFragmentManager().addOnBackStackChangedListener(
@@ -262,14 +190,14 @@ public class MainActivity extends BaseActivity {
                             setMessage("The system is under maintenance. You are being logged out.")
                             .setCancelable(false).setPositiveButton("OK",
                                     new DialogInterface.OnClickListener(){
-                                @Override
-                                public void onClick(DialogInterface dialog, int which){
-                                    logout();
-                                    Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
-                                    startActivity(intent);
-                                    finish();
-                                }
-                            }).show();
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which){
+                                            logout();
+                                            Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    }).show();
                 }
             }
         });
@@ -281,7 +209,7 @@ public class MainActivity extends BaseActivity {
         outState.putInt(SAVED_INSTANCE_STATE_USERID_KEY,loggedinuserid);
         updateSharedPreference();
     }
-//recycler tools
+    //recycler tools
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater=getMenuInflater();

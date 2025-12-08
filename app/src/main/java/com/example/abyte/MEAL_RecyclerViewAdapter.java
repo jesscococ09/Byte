@@ -36,8 +36,18 @@ public class MEAL_RecyclerViewAdapter extends RecyclerView.Adapter<MEAL_Recycler
     //Assigning values to the views created using meal_recycler_row.xml layout file
     public void onBindViewHolder(@NonNull MEAL_RecyclerViewAdapter.MyViewHolder holder, int position) {
         holder.mealName.setText(mealList.get(position).getMealName());
+        holder.ingredient1.setText(mealList.get(position).getIngredient1());
+        holder.ingredient2.setText(mealList.get(position).getIngredient2());
+        holder.ingredient3.setText(mealList.get(position).getIngredient3());
+        holder.ingredient4.setText(mealList.get(position).getIngredient4());
+        holder.ingredient5.setText(mealList.get(position).getIngredient5());
+        holder.ingredient6.setText(mealList.get(position).getIngredient6());
+        holder.ingredient7.setText(mealList.get(position).getIngredient7());
+        holder.ingredient8.setText(mealList.get(position).getIngredient8());
+        holder.ingredient9.setText(mealList.get(position).getIngredient9());
+        holder.ingredient10.setText(mealList.get(position).getIngredient10());
 //        holder.mealStatus.setText(mealList.get(position).getStatus()); //TODO: Create way of storing status
-        holder.mealImage.setImageResource(mealList.get(position).getImageFile());
+//        holder.mealImage.setImageResource(mealList.get(position).getImageFile());
     }
 
     @Override
@@ -48,13 +58,21 @@ public class MEAL_RecyclerViewAdapter extends RecyclerView.Adapter<MEAL_Recycler
 
     public static class MyViewHolder extends  RecyclerView.ViewHolder {
 
-        ImageView mealImage;
-        TextView mealName, mealStatus;
+        TextView mealName;
+        TextView ingredient1;
+        TextView ingredient2;
+        TextView ingredient3;
+        TextView ingredient4;
+        TextView ingredient5;
+        TextView ingredient6;
+        TextView ingredient7;
+        TextView ingredient8;
+        TextView ingredient9;
+        TextView ingredient10;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            mealImage = itemView.findViewById(R.id.byteMealRecyclerPhoto);
             mealName = itemView.findViewById(R.id.byteMealRecyclerRowName);
-            mealStatus = itemView.findViewById(R.id.byteMealRecyclerRowStatus);
         }
     }
 }

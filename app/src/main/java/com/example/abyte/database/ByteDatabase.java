@@ -29,10 +29,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @TypeConverters({LocalDateTypeConverter.class, IngredientTypeConverter.class, HashMapTypeConverter.class, ArrayTypeConverter.class})
-@Database(entities = {User.class, Meal.class}, version = 1,exportSchema = false)
+@Database(entities = {User.class, Meal.class}, version = 3, exportSchema = false)
 //add Setting.class, Theme.class
-@TypeConverters(LocalDateTypeConverter.class)
-@Database(entities = {User.class}, version = 2,exportSchema = false)
 //add Meal.class, Setting.class, Theme.class
 public abstract class ByteDatabase extends RoomDatabase {
     private static final String DATABASE_NAME="Bytedatabase";
@@ -68,19 +66,23 @@ public abstract class ByteDatabase extends RoomDatabase {
             super.onCreate(db);
             Log.i(MainActivity.TAG,"DATABASE CREATED!");
             databaseWriteExecutor.execute(()->{
-                UserDAO dao= INSTANCE.userDAO();
+                UserDAO dao = INSTANCE.userDAO();
                 dao.deleteALL();
                 User admin=new User("admin1","admin1","admin");
                 admin.setAdmin(true);
                 dao.insert(admin);
                 User testUser1=new User("testuser1","testuser1","testing");
                 dao.insert(testUser1);
+
+                MealDAO mealDAO = INSTANCE.mealDAO();
+                Meal testMeal = new Meal(0, "testMeal", "testInstructions", "testIngredient1", "testIngredient2", "testIngredient3", "testIngredient4", "testIngredient5", "testIngredient6", "testIngredient7", "testIngredient8", "testIngredient9", "testIngredient10");
+                mealDAO.insert(testMeal);
             });
         }
     };
 
     public abstract UserDAO userDAO();
-    //public abstract MealDAO mealDAO();
+    public abstract MealDAO mealDAO();
     //public abstract SettingDAO settingDAO();
     //public abstract ThemeDAO themeDAO();
 
