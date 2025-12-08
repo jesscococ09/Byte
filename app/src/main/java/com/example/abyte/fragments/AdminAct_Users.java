@@ -92,12 +92,9 @@ public class AdminAct_Users extends Fragment{
             return;
         }
 
-        User user = new User(username, password, securityKey);
-
+        User user = new User(username, password, securityKey, true);
         repository.insertUser(user);
-
-        toast("Added: " + username);
-
+        toast("Added Admin: " + username);
         newUserName.setText("");
         newUserPassword.setText("");
         newUserSecurityKey.setText("");
@@ -113,30 +110,22 @@ public class AdminAct_Users extends Fragment{
             toast("Admin cannot be eliminated");
             return;
         }
-
         repository.deleteUserByUsername(username);
-
         Set<String> flagged = getFlaggedUsers();
-
         if(flagged.contains(username)){
             flagged.remove(username);
             saveFlaggedUser(flagged);
         }
-
         toast("Delete requested for:" + username);
-
         deleteUserName.setText("");
     }
     private void flagUser(){
         String username = flagUserName.getText().toString().trim();
-
         if(username.isEmpty()){
             toast("Enter a username to flag");
             return;
         }
-
         Set<String> flagged = getFlaggedUsers();
-
         if(flagged.contains(username)){
             toast("User already flagged");
         }else{
@@ -144,19 +133,15 @@ public class AdminAct_Users extends Fragment{
             saveFlaggedUser(flagged);
             toast("Flagged: " + username);
         }
-
         flagUserName.setText("");
     }
     private void unflagUser(){
         String username = unflagUserName.getText().toString().trim();
-
         if(username.isEmpty()){
             toast("Enter a username to unflag");
             return;
         }
-
         Set<String> flagged = getFlaggedUsers();
-
         if(flagged.contains(username)){
             flagged.remove(username);
             saveFlaggedUser(flagged);
@@ -164,14 +149,11 @@ public class AdminAct_Users extends Fragment{
         }else{
             toast("User is not flagged");
         }
-
         unflagUserName.setText("");
     }
     private Set<String> getFlaggedUsers(){
         SharedPreferences prefs = requireActivity().getSharedPreferences(PREFS_NAMES, Context.MODE_PRIVATE);
-
         Set<String> stored = prefs.getStringSet(FLAGGED_USERS_KEY, null);
-
         if(stored == null){
             return new HashSet<String>();
         }

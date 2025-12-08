@@ -77,4 +77,5 @@
     <string name="bug_description">Bug Description...</string>
     <string name="title">Title</string>
     <string name="description">Description</string>
+    <string name="add_admin">Add Admin</string>
 </resources>
