@@ -1,6 +1,7 @@
 package com.example.abyte.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +14,22 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 
+import com.example.abyte.APIs.MealsApi;
+import com.example.abyte.APIs.SupabaseApi;
+import com.example.abyte.APIs.apiClient;
+import com.example.abyte.APIs.models.CountResult;
+import com.example.abyte.APIs.models.MealResponse;
+import com.example.abyte.APIs.models.Recipe;
 import com.example.abyte.R;
 import com.example.abyte.database.entities.User;
 import com.example.abyte.database.repositories.UserRepository;
+import com.google.gson.Gson;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AdminAct_Analytics extends Fragment {
 
@@ -36,6 +48,10 @@ public class AdminAct_Analytics extends Fragment {
     private TextView totalSupabaseMealsView;
     private TextView totalMealsView;
     private TextView totalBugsView;
+
+    //API
+    private MealsApi mealsApi;
+    private SupabaseApi supabaseApi;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -84,6 +100,10 @@ public class AdminAct_Analytics extends Fragment {
                 displayUsernames(users);
             }
         });
+
+        //init API
+        mealsApi= apiClient.getExternalClient().create(MealsApi.class);
+        supabaseApi=apiClient.getSupabaseClient().create(SupabaseApi.class);
 
         // load stats (replace placeholders with real values when ready)
         loadStats();
@@ -144,14 +164,45 @@ public class AdminAct_Analytics extends Fragment {
 
     // TODO: hook these up to your actual data sources
     private void loadStats() {
-        int totalMealDbMeals = 0;
-        int totalSupabaseMeals = 0;
-        int totalMeals = 0;
-        int totalBugs = 0;
+        // 1) Call MealDB API
+        mealsApi.searchMeals("").enqueue(new Callback<MealResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<MealResponse> call,
+                                   @NonNull Response<MealResponse> response) {
+                int totalMealDbMeals = response.body() != null && response.body().getMeals() != null
+                        ? response.body().getMeals().size()
+                        : 0;
+                totalMealDbMealsView.setText("Total Meals (MealDB): " + totalMealDbMeals);
 
-        totalMealDbMealsView.setText("Total Meals (MealDB): " + totalMealDbMeals);
-        totalSupabaseMealsView.setText("Total Supabase Meals: " + totalSupabaseMeals);
-        totalMealsView.setText("Total Meals: " + totalMeals);
-        totalBugsView.setText("Total Bugs: " + totalBugs);
+                // 2) Call Supabase API for count
+                supabaseApi.countRecipes().enqueue(new Callback<List<CountResult>>() {
+                    @Override
+                    public void onResponse(@NonNull Call<List<CountResult>> call,
+                                           @NonNull Response<List<CountResult>> response) {
+                        int totalSupabaseMeals = 0;
+                        if (response.body() != null && !response.body().isEmpty()) {
+                            totalSupabaseMeals = response.body().get(0).count;
+                        }
+                        totalSupabaseMealsView.setText("Total Supabase Meals: " + totalSupabaseMeals);
+                        int totalMeals = totalMealDbMeals + totalSupabaseMeals;
+                        totalMealsView.setText("Total Meals: " + totalMeals);
+                        int totalBugs = 0;
+                        totalBugsView.setText("Total Bugs: " + totalBugs);
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<List<CountResult>> call, @NonNull Throwable t) {
+                        Log.e("AdminAct_Analytics", "Supabase call failed", t);
+                        totalSupabaseMealsView.setText("Total Supabase Meals: error");
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<MealResponse> call, @NonNull Throwable t) {
+                totalMealDbMealsView.setText("Total Meals (MealDB): error");
+                Log.e("AdminAct_Analytics", "MealDB API call failed", t);
+            }
+        });
     }
 }

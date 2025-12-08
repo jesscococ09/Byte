@@ -81,7 +81,7 @@
         style="@android:style/Widget.DeviceDefault.ImageButton"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:adjustViewBounds="true"
         android:background="@android:color/transparent"
         android:backgroundTint="@android:color/widget_edittext_dark"
@@ -90,7 +90,7 @@
         android:scaleType="fitCenter"
         android:src="@drawable/ic_setting_icon"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.378"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/byteThemesButton" />
 
@@ -98,7 +98,7 @@
         android:id="@+id/isadminImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="32dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/adminbutton"
         android:src="@drawable/ic_admin_icon"
