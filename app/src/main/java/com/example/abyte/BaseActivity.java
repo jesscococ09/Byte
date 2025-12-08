@@ -19,6 +19,7 @@ public class BaseActivity extends AppCompatActivity {
             return;
         }
 
+
         Configuration configuration = newBase.getResources().getConfiguration();
         Configuration newConfig = new Configuration(configuration);
         newConfig.fontScale = scale;

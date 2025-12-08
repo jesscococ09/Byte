@@ -35,7 +35,6 @@ public class SettingsActivity extends BaseActivity {
 
         SharedPreferences prefs2 = getSharedPreferences("prefs2", MODE_PRIVATE);
         boolean themeOff = prefs2.getBoolean("theme_off", true);
-
         String themeName2 = themeOff ? "ThemeWhite" : prefs2.getString("app_theme", "AppTheme");
         int themeResId2 = getResources().getIdentifier(themeName2, "style", getPackageName());
         setTheme(themeResId2);
@@ -45,6 +44,7 @@ public class SettingsActivity extends BaseActivity {
         setContentView(R.layout.activity_settings);
         setContentView(R.layout.activity_settings);
 
+
         Switch themeSwitch = findViewById(R.id.theme_switch);
         themeSwitch.setChecked(!themeOff);
 
@@ -52,9 +52,9 @@ public class SettingsActivity extends BaseActivity {
             prefs2.edit().putBoolean("theme_off", !isChecked).apply();
             recreate();
 
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+           // Intent intent = new Intent(this, MainActivity.class);
+            // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            //startActivity(intent);
 
         });
 
@@ -88,10 +88,10 @@ public class SettingsActivity extends BaseActivity {
             recreate();
 
 
-            Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
+          //  Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+           // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+           // startActivity(intent);
+           // finish();
         });
 
 
@@ -99,7 +99,12 @@ public class SettingsActivity extends BaseActivity {
 
         btnReturn = findViewById(R.id.btn_return);
         if (btnReturn == null) throw new RuntimeException("btnReturn not found in activity_settings.xml");
-        btnReturn.setOnClickListener(v -> finish());
+        btnReturn.setOnClickListener(v -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        });
 
     }
 

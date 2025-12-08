@@ -2,6 +2,7 @@ package com.example.abyte;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.lifecycle.LiveData;
 import com.example.abyte.database.entities.User;
 import com.example.abyte.databinding.ActivityLoginBinding;
 import com.example.abyte.database.repositories.UserRepository;
+import com.example.abyte.fragments.AdminAct_Settings;
 import com.example.abyte.fragments.ForgotPasswordFragment;
 import com.example.abyte.fragments.NewUserFragment;
 
@@ -52,7 +54,19 @@ public class LoginActivity extends AppCompatActivity {
         });
         binding.signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v){
+                SharedPreferences adminPrefs =
+                        getSharedPreferences("admin_settings_prefs", MODE_PRIVATE);
+
+                boolean registrationSwitchOn =
+                        adminPrefs.getBoolean(AdminAct_Settings.KEY_ALLOW_USERS, false);
+
+                if (registrationSwitchOn){
+                    Toast.makeText(LoginActivity.this,
+                            "New user registration is currently disabled by the administrator.",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
                 hideLoginUI();
                 getSupportFragmentManager()
                         .beginTransaction()

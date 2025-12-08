@@ -15,6 +15,7 @@ public class Setting {
     private int settingId;
     //Use databaseDesign
 
+
      */
 
     private static final String PREF_NAME = "app_prefs";

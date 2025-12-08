@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-public class AdminActivity extends Fragment {
+public class AdminUserControlActivity extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
@@ -17,25 +17,14 @@ public class AdminActivity extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
-        View usersBtn = view.findViewById(R.id.viewAdminUsers);
-        if (usersBtn != null) {
-            usersBtn.setVisibility(View.VISIBLE);
-            usersBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    openFragment(new AdminUserControlActivity());
-                }
-            });
+        View settingsBtn = view.findViewById(R.id.viewAdminSettingsButton);
+        if (settingsBtn != null) {
+            settingsBtn.setVisibility(View.GONE);
         }
 
-        View flaggedBtn = view.findViewById(R.id.viewAdminFlagged);
-        if (flaggedBtn != null) {
-            flaggedBtn.setVisibility(View.GONE);
-        }
-
-        View analyticsBtn = view.findViewById(R.id.viewAdminAnalytics);
-        if (analyticsBtn != null) {
-            analyticsBtn.setVisibility(View.GONE);
+        View bugsBtn = view.findViewById(R.id.viewAdminBugsButton);
+        if (bugsBtn != null) {
+            bugsBtn.setVisibility(View.GONE);
         }
 
         View themesBtn = view.findViewById(R.id.viewAdminThemesButton);
@@ -43,28 +32,38 @@ public class AdminActivity extends Fragment {
             themesBtn.setVisibility(View.GONE);
         }
 
-        View settingsBtn = view.findViewById(R.id.viewAdminSettingsButton);
-        if (settingsBtn != null) {
-            settingsBtn.setOnClickListener(new View.OnClickListener() {
+        View usersBtn = view.findViewById(R.id.viewAdminUsers);
+        if (usersBtn != null) {
+            usersBtn.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
-                    openFragment(new com.example.abyte.fragments.AdminAct_Settings());
+                    openFragment(new com.example.abyte.fragments.AdminAct_Users());
                 }
             });
         }
 
-        View bugsBtn = view.findViewById(R.id.viewAdminBugsButton);
-        if (bugsBtn != null) {
-            bugsBtn.setOnClickListener(new View.OnClickListener() {
+        View flaggedBtn = view.findViewById(R.id.viewAdminFlagged);
+        if (flaggedBtn != null) {
+            flaggedBtn.setOnClickListener(new View.OnClickListener(){
                 @Override
-                public void onClick(View v) {
-                    openFragment(new com.example.abyte.fragments.AdminAct_Bugs());
+                public void onClick(View v){
+                    openFragment(new com.example.abyte.fragments.AdminAct_Flagged());
+                }
+            });
+        }
+
+        View analyticsBtn = view.findViewById(R.id.viewAdminAnalytics);
+        if (analyticsBtn != null) {
+            analyticsBtn.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    openFragment(new com.example.abyte.fragments.AdminAct_Analytics());
                 }
             });
         }
 
         View backBtn = view.findViewById(R.id.adminBackButton);
-        if (backBtn != null){
+        if (backBtn != null) {
             backBtn.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
@@ -73,6 +72,7 @@ public class AdminActivity extends Fragment {
             });
         }
     }
+
     private void openFragment(Fragment frag){
         requireActivity().getSupportFragmentManager().beginTransaction().
                 replace(R.id.fragmentContainer, frag).addToBackStack(null).commit();

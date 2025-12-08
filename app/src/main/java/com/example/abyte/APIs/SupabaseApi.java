@@ -1,7 +1,9 @@
 package com.example.abyte.APIs;
 
+import com.example.abyte.APIs.models.CountResult;
 import com.example.abyte.APIs.models.Favorite;
 import com.example.abyte.APIs.models.Recipe;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
@@ -15,6 +17,10 @@ import retrofit2.http.Query;
 public interface SupabaseApi {
     @GET("recipes")
     Call<List<Recipe>> getRecipes(@Query("select") String select,@Query("count") String count);
+
+    //for Recipe count only
+    @POST("rpc/count_recipes")
+    Call<List<CountResult>> countRecipes();
 
     @POST("recipes")
     Call<Recipe> addRecipe(@Body Recipe recipe);
@@ -30,4 +36,5 @@ public interface SupabaseApi {
 
     @DELETE("favorites")
     Call<Void> deleteFavorite(@Query("id") int favoriteId);
+
 }

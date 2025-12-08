@@ -12,10 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
         <activity
-            android:name=".MealFavoritesActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LoginActivity"
             android:name=".ThemeActivity"
             android:exported="false" />
         <activity
@@ -33,11 +29,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-        <activity
-            android:name=".MealSearchActivity"
-            android:exported="false"
-            />
-
     </application>
 
 </manifest>

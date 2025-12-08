@@ -1,12 +1,10 @@
 package com.example.abyte.database.entities;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.example.abyte.database.ByteDatabase;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Objects;
 
 @Entity(tableName = ByteDatabase.USER_TABLE)
@@ -18,16 +16,19 @@ public class User {
     private String securityKey;
     private boolean isAdmin;
 
-    //TODO NOT FINAL** Needs testing
-    //Intentionally is not included in hashcode and equals methods
-    private HashMap<String, Ingredient> availableIngredients;
-
+    @Ignore
     public User(String username, String password,String securityKey) {
         this.username = username;
         this.password = password;
         this.securityKey= securityKey;
-        isAdmin=false;
-        availableIngredients = new HashMap<>();
+        this.isAdmin=false;
+    }
+
+    public User(String username, String password,String securityKey, boolean isAdmin){
+        this.username = username;
+        this.password = password;
+        this.securityKey= securityKey;
+        this.isAdmin = isAdmin;
     }
 
     @Override
@@ -72,14 +73,6 @@ public class User {
 
     public void setAdmin(boolean admin) {
         isAdmin = admin;
-    }
-
-    public HashMap<String, Ingredient> getAvailableIngredients() {
-        return availableIngredients;
-    }
-
-    public void setAvailableIngredients(HashMap<String, Ingredient> newIngrList){
-        availableIngredients = newIngrList;
     }
 
     public String getSecurityKey() {
