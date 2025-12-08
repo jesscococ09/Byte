@@ -47,6 +47,7 @@ public class Setting {
         }
     }
 
+
     public static void setTextScale(Context context, float scale) {
         SettingDAO dao = ByteDatabase.getInstance(context).settingDAO();
         Setting existing = dao.getSettingByKey(KEY_TEXT_SCALE);

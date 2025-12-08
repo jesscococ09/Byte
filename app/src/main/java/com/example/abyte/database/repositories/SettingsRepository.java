@@ -15,6 +15,7 @@ public class SettingsRepository {
         settingDao = db.settingDAO();
     }
 
+
     public void setSetting(String key, String value) {
         Setting setting = new Setting();
         setting.key = key;

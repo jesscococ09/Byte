@@ -14,6 +14,7 @@ public class SettingsActivity extends BaseActivity {
 
     private Button btnReturn;
 
+
     private static final float SCALE_SMALL  = 0.9f;
     private static final float SCALE_NORMAL = 1.0f;
     private static final float SCALE_LARGE  = 1.2f;
