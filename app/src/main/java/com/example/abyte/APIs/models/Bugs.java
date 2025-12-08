@@ -1,4 +1,4 @@
-package com.example.abyte.model;
+package com.example.abyte.APIs.models;
 
 public class Bugs{
     private String id;

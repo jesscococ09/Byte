@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.abyte.R;
 import com.example.abyte.adapter.BugsAdapter;
-import com.example.abyte.model.Bugs;
+import com.example.abyte.APIs.models.Bugs;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.abyte.R;
-import com.example.abyte.model.Bugs;
+import com.example.abyte.APIs.models.Bugs;
 import java.util.List;
 
 public class BugsAdapter extends RecyclerView.Adapter<BugsAdapter.BugViewHolder>{
