@@ -10,6 +10,7 @@ import com.example.abyte.database.entities.Setting;
 
 
 @Dao
+
 public interface SettingDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Setting... setting);

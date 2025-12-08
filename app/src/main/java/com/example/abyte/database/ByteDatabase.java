@@ -24,6 +24,7 @@ import com.example.abyte.database.typeConverters.LocalDateTypeConverter;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+
 @TypeConverters(LocalDateTypeConverter.class)
 @Database(entities = {User.class,Setting.class}, version = 3,exportSchema = false)
 //add Meal.class, Setting.class, Theme.class
