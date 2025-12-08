@@ -26,11 +26,11 @@ import java.util.concurrent.Executors;
 
 
 @TypeConverters(LocalDateTypeConverter.class)
-@Database(entities = {User.class,Setting.class}, version = 3,exportSchema = false)
+@Database(entities = {User.class, Meal.class, Setting.class}, version = 4,exportSchema = false)
 //add Meal.class, Setting.class, Theme.class
 public abstract class ByteDatabase extends RoomDatabase {
     private static final String DATABASE_NAME = "Bytedatabase";
-    //public static final String MEAL_TABLE="mealtable";
+    public static final String MEAL_TABLE="mealtable";
     public static final String SETTING_TABLE = "settingtable";
     public static final String USER_TABLE = "usertable";
     //public static final String THEME_TABLE="themetable";
@@ -70,6 +70,12 @@ public abstract class ByteDatabase extends RoomDatabase {
                 dao.insert(admin);
                 User testUser1 = new User("testuser1", "testuser1", "testing");
                 dao.insert(testUser1);
+
+                MealDAO mealDAO = INSTANCE.mealDAO();
+                mealDAO.deleteAll();
+
+                SettingDAO settingDAO = INSTANCE.settingDAO();
+                settingDAO.insert();
             });
         }
     };
@@ -77,7 +83,7 @@ public abstract class ByteDatabase extends RoomDatabase {
 
     public abstract UserDAO userDAO();
 
-    //public abstract MealDAO mealDAO();
+    public abstract MealDAO mealDAO();
     public abstract SettingDAO settingDAO();
 
     //public abstract ThemeDAO themeDAO();
