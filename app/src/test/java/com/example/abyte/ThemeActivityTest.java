@@ -24,8 +24,6 @@ import static org.junit.Assert.assertTrue;
 
 public class ThemeActivityTest {
 
-
-
    @Test
     public void testSelectPinkTheme_SavesToPrefs() {
 

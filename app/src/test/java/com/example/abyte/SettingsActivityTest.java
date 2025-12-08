@@ -217,7 +217,6 @@ public class SettingsActivityTest {
         }
     }
 
-
     @Test
     public void btnReturn_startsMainActivity_andFinishes() {
         try (ActivityScenario<SettingsActivity> scenario =
