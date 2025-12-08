@@ -71,9 +71,6 @@ public abstract class ByteDatabase extends RoomDatabase {
                 User testUser1 = new User("testuser1", "testuser1", "testing");
                 dao.insert(testUser1);
 
-                MealDAO mealDAO = INSTANCE.mealDAO();
-                mealDAO.deleteAll();
-
                 SettingDAO settingDAO = INSTANCE.settingDAO();
                 settingDAO.insert();
             });
