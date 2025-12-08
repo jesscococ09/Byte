@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Menu;
@@ -13,19 +12,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LiveData;
 import com.example.abyte.database.entities.User;
 import com.example.abyte.databinding.ActivityMainBinding;
 import com.example.abyte.database.repositories.UserRepository;
 import com.example.abyte.fragments.AdminAct_Settings;
-//
+
 public class MainActivity extends BaseActivity {
     private static final String MAIN_ACTIVITY_USER_ID="com.example.abyte.MAIN_ACTIVITY_USER_ID";
     static final String SAVED_INSTANCE_STATE_USERID_KEY="com.example.abyte.SAVED_INSTANCE_STATE_USERID_KEY";
@@ -37,10 +33,11 @@ public class MainActivity extends BaseActivity {
     private User user;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        SharedPreferences prefs = getSharedPreferences("settings", MODE_PRIVATE);
+       SharedPreferences prefs = getSharedPreferences("settings", MODE_PRIVATE);
         String themeName = prefs.getString("app_theme", "AppTheme");
         int themeResId = getResources().getIdentifier(themeName, "style", getPackageName());
         setTheme(themeResId);
@@ -50,6 +47,8 @@ public class MainActivity extends BaseActivity {
         String themeName2 = themeOff ? "ThemeWhite" : prefs2.getString("app_theme", "AppTheme");
         int themeResId2 = getResources().getIdentifier(themeName2, "style", getPackageName());
         setTheme(themeResId2);
+
+
 
 
 
