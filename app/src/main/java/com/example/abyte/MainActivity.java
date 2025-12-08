@@ -54,7 +54,6 @@ public class MainActivity extends BaseActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setContentView(R.layout.activity_main);
 
         SharedPreferences prefs3 = getSharedPreferences("prefs3", MODE_PRIVATE);
         int fontSize = prefs3.getInt("font_size", 16); // default 16sp
@@ -82,21 +81,20 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //bing to create_meals.xml
-                Toast.makeText(MainActivity.this,"first button",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"Disabled",Toast.LENGTH_SHORT).show();
             }
         });
         binding.byteFindMealsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //bing to find_meals.xml
-                Toast.makeText(MainActivity.this,"second button",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, MealSearchActivity.class));
             }
         });
         binding.byteSavedMealsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //bing to saved_meals.xml
-                Toast.makeText(MainActivity.this,"third button",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"DISABLED",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -130,7 +128,7 @@ public class MainActivity extends BaseActivity {
                 findViewById(R.id.fragmentContainer).setVisibility(View.VISIBLE);
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
-                        new com.example.abyte.AdminActivity()).addToBackStack("AdminHome").
+                                new com.example.abyte.AdminActivity()).addToBackStack("AdminHome").
                         commit();
             }
         });
@@ -192,14 +190,14 @@ public class MainActivity extends BaseActivity {
                             setMessage("The system is under maintenance. You are being logged out.")
                             .setCancelable(false).setPositiveButton("OK",
                                     new DialogInterface.OnClickListener(){
-                                @Override
-                                public void onClick(DialogInterface dialog, int which){
-                                    logout();
-                                    Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
-                                    startActivity(intent);
-                                    finish();
-                                }
-                            }).show();
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which){
+                                            logout();
+                                            Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    }).show();
                 }
             }
         });
@@ -211,7 +209,7 @@ public class MainActivity extends BaseActivity {
         outState.putInt(SAVED_INSTANCE_STATE_USERID_KEY,loggedinuserid);
         updateSharedPreference();
     }
-//recycler tools
+    //recycler tools
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater=getMenuInflater();
