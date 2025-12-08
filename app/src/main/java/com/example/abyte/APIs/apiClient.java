@@ -30,11 +30,13 @@ public class apiClient {
         if(supabaseRetrofit==null){
             OkHttpClient supabaseClient= new OkHttpClient.Builder().addInterceptor(chain -> {
                 Request request=chain.request().newBuilder().addHeader("apikey",SUPABASE_API_KEY)
-                        .addHeader("Authorization", "Bearer " +SUPABASE_API_KEY).build();
+                        .addHeader("Authorization", "Bearer " +SUPABASE_API_KEY)
+                        .build();
                 return chain.proceed(request);
             }).build();
             supabaseRetrofit= new Retrofit.Builder()
                     .baseUrl(URL_SUPABASE_API)
+                    .client(supabaseClient)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }

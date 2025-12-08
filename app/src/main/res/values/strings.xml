@@ -40,6 +40,7 @@
     <string name="light">Light</string>
     <string name="dark">Dark</string>
     <string name="system_default">System Default</string>
+    <string name="Settings">Settings</string>
     <string name="allow_new_user_registration">Allow New User Registration</string>
     <string name="maintenance_mode">Maintenance Mode</string>
     <string name="save_settings">Save Settings</string>
@@ -60,6 +61,24 @@
     <string name="total_supabase_meals_0">total_supabase_meals_0</string>
     <string name="total_bugs_0">total_bugs_0</string>
     <string name="total_meals_0">total_meals_0</string>
-    <string name="Settings">Settings</string>
 
+    <string name="manage_users">Manage Users</string>
+    <string name="add_user">Add User</string>
+    <string name="delete_user">Delete User</string>
+    <string name="flag_user">Flag User</string>
+    <string name="unflag_user">Unflag User</string>
+    <string name="flagged_users">Flagged Users</string>
+    <string name="total_users">Total Users:</string>
+    <string name="_0">0</string>
+    <string name="admin_users">Admin Users:</string>
+    <string name="regular_users">Regular Users:</string>
+    <string name="total_meals_mealdb_0">Total Meals (MealDB): 0</string>
+    <string name="user_summary">User Summary</string>
+    <string name="user_list">User List</string>
+    <string name="bug_title_issue">Bug Title/ Issue</string>
+    <string name="bug_description">Bug Description...</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="add_admin">Add Admin</string>
+    <string name="new_user_registration_block">New User Registration Block</string>
 </resources>

@@ -3,6 +3,8 @@
     <words>
       <w>adminbutton</w>
       <w>isadmin</w>
+      <w>mealdb</w>
+      <w>supabase</w>
     </words>
   </dictionary>
 </component>

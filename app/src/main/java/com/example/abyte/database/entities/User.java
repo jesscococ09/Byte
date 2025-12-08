@@ -1,5 +1,6 @@
 package com.example.abyte.database.entities;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.example.abyte.database.ByteDatabase;
@@ -15,11 +16,19 @@ public class User {
     private String securityKey;
     private boolean isAdmin;
 
+    @Ignore
     public User(String username, String password,String securityKey) {
         this.username = username;
         this.password = password;
         this.securityKey= securityKey;
-        isAdmin=false;
+        this.isAdmin=false;
+    }
+
+    public User(String username, String password,String securityKey, boolean isAdmin){
+        this.username = username;
+        this.password = password;
+        this.securityKey= securityKey;
+        this.isAdmin = isAdmin;
     }
 
     @Override

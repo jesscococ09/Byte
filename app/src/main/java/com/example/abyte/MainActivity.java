@@ -24,6 +24,7 @@ import androidx.lifecycle.LiveData;
 import com.example.abyte.database.entities.User;
 import com.example.abyte.databinding.ActivityMainBinding;
 import com.example.abyte.database.repositories.UserRepository;
+import com.example.abyte.fragments.AdminAct_Settings;
 //
 public class MainActivity extends BaseActivity {
     private static final String MAIN_ACTIVITY_USER_ID="com.example.abyte.MAIN_ACTIVITY_USER_ID";
@@ -180,6 +181,25 @@ public class MainActivity extends BaseActivity {
                     adminButton.setVisibility(View.VISIBLE);
                 }else{
                     adminButton.setVisibility(View.INVISIBLE);
+                }
+                SharedPreferences adminPrefs = getSharedPreferences("admin_settings_prefs",
+                        MODE_PRIVATE);
+                boolean maintenanceOn = adminPrefs.getBoolean(AdminAct_Settings.
+                        KEY_MAINTENANCE_MODE, false);
+
+                if(maintenanceOn && !user.isAdmin()){
+                    new AlertDialog.Builder(MainActivity.this).setTitle("Maintenance Mode").
+                            setMessage("The system is under maintenance. You are being logged out.")
+                            .setCancelable(false).setPositiveButton("OK",
+                                    new DialogInterface.OnClickListener(){
+                                @Override
+                                public void onClick(DialogInterface dialog, int which){
+                                    logout();
+                                    Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }).show();
                 }
             }
         });
