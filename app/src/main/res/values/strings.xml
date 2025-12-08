@@ -60,5 +60,6 @@
     <string name="total_supabase_meals_0">total_supabase_meals_0</string>
     <string name="total_bugs_0">total_bugs_0</string>
     <string name="total_meals_0">total_meals_0</string>
+    <string name="Settings">Settings</string>
 
 </resources>
