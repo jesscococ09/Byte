@@ -15,15 +15,17 @@ public class User {
     private int userId;
     private String username;
     private String password;
+    private String securityKey;
     private boolean isAdmin;
 
     //TODO NOT FINAL** Needs testing
     //Intentionally is not included in hashcode and equals methods
     private HashMap<String, Ingredient> availableIngredients;
 
-    public User(String username, String password) {
+    public User(String username, String password,String securityKey) {
         this.username = username;
         this.password = password;
+        this.securityKey= securityKey;
         isAdmin=false;
         availableIngredients = new HashMap<>();
     }
@@ -78,6 +80,14 @@ public class User {
 
     public void setAvailableIngredients(HashMap<String, Ingredient> newIngrList){
         availableIngredients = newIngrList;
+    }
+
+    public String getSecurityKey() {
+        return securityKey;
+    }
+
+    public void setSecurityKey(String securityKey) {
+        this.securityKey = securityKey;
     }
 }
 

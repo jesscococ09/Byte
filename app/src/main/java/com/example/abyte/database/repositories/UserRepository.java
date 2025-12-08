@@ -7,6 +7,8 @@ import com.example.abyte.MainActivity;
 import com.example.abyte.database.ByteDatabase;
 import com.example.abyte.database.daos.UserDAO;
 import com.example.abyte.database.entities.User;
+
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -50,5 +52,18 @@ public class UserRepository {
     }
     public LiveData<User> getUserByUserId(int userId){
         return userDAO.getUserByUserId(userId);
+    }
+
+    public LiveData<List<User>> getAllUsers(){
+        return userDAO.getAllUsers();
+    }
+
+    public void deleteUserByUsername(final String username){
+        ByteDatabase.databaseWriteExecutor.execute(new Runnable(){
+            @Override
+            public void run(){
+                userDAO.deleteUserByUsername(username);
+            }
+        });
     }
 }
